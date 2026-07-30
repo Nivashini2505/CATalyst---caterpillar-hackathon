@@ -10,21 +10,32 @@ from sqlalchemy import text
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup MongoDB
-    await connect_to_mongo()
-    db = await get_database()
-    await init_beanie(database=db, document_models=[User, Operator, SiteManager, Dealer, Notification, LoginHistory])
-    
-    # Startup PostgreSQL
-    async with engine.begin() as conn:
-        await conn.execute(text("SELECT 1"))
-        
-        # Automatically create all Postgres tables if they don't exist
-        from app.models.postgres.core import Base
-        await conn.run_sync(Base.metadata.create_all)
-    print("*" * 50)
-    print("SUCCESS: Connected to Local PostgreSQL Database!")
-    print("*" * 50)
+    # Startup MongoDB — never let a DB outage kill the whole API. The ML
+    # dashboard endpoints (analytics/ai/equipment) don't need Mongo, so we log
+    # and continue instead of crashing startup.
+    app.state.mongo_ok = False
+    try:
+        await connect_to_mongo()
+        db = await get_database()
+        await init_beanie(database=db, document_models=[User, Operator, SiteManager, Dealer, Notification, LoginHistory])
+        app.state.mongo_ok = True
+        print("SUCCESS: Connected to MongoDB.")
+    except Exception as e:
+        print(f"WARNING: MongoDB unavailable ({e}). Auth/user routes limited; ML + dashboard still start.")
+
+    # Startup PostgreSQL — same policy: degrade, don't die.
+    app.state.postgres_ok = False
+    try:
+        async with engine.begin() as conn:
+            await conn.execute(text("SELECT 1"))
+            from app.models.postgres.core import Base
+            await conn.run_sync(Base.metadata.create_all)
+        app.state.postgres_ok = True
+        print("*" * 50)
+        print("SUCCESS: Connected to PostgreSQL Database!")
+        print("*" * 50)
+    except Exception as e:
+        print(f"WARNING: PostgreSQL unavailable ({e}). DB-backed routes degrade; ML endpoints still serve.")
 
     # Warm the ML models + serving snapshot so the first dashboard request
     # is instant during the demo. Never let this block/kill startup.
@@ -39,9 +50,15 @@ async def lifespan(app: FastAPI):
         print(f"WARNING: ML warmup skipped ({e}). API still starts.")
 
     yield
-    # Shutdown
-    await close_mongo_connection()
-    await engine.dispose()
+    # Shutdown — guard each so a never-connected DB doesn't raise on exit.
+    try:
+        await close_mongo_connection()
+    except Exception:
+        pass
+    try:
+        await engine.dispose()
+    except Exception:
+        pass
 
 from fastapi.middleware.cors import CORSMiddleware
 

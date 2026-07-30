@@ -1,14 +1,20 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi import APIRouter
 from sqlalchemy.future import select
-from app.db.postgres import get_db
+from app.db.postgres import AsyncSessionLocal
 from app.models.postgres.core import Asset, Site, Assignment
 from pydantic import BaseModel
-import random
+import hashlib
 
 from app.ml import inference as ml
 
 router = APIRouter()
+
+
+def _stable_int(seed: str, lo: int, hi: int) -> int:
+    """Deterministic value in [lo, hi] from a string seed (stable across calls,
+    so the UI doesn't flicker on every refresh - replaces random.randint)."""
+    h = int(hashlib.md5(str(seed).encode()).hexdigest(), 16)
+    return lo + (h % (hi - lo + 1))
 
 # Schema for frontend
 class EquipmentUIResponse(BaseModel):
@@ -82,7 +88,7 @@ def _from_snapshot():
             health=int(hp["health"]),
             engineHours=int(float(m.get("total_engine_hours", 0) or 0)),
             idleHours=idle_hours,
-            rentalRemainingDays=random.randint(1, 30),
+            rentalRemainingDays=_stable_int(aid, 1, 30),
             status=status,
             riskScore=int(hp["riskScore"]),
         ))
@@ -90,42 +96,58 @@ def _from_snapshot():
 
 
 @router.get("", response_model=list[EquipmentUIResponse])
-async def get_all_equipment(db: AsyncSession = Depends(get_db)):
+async def get_all_equipment():
     # Prefer the ML serving snapshot (richer fleet + real predicted health).
+    # No DB dependency here, so the fleet list keeps working even if Postgres
+    # is down during the demo.
     try:
         if ml.is_ready():
             return _from_snapshot()
     except Exception as e:
         print("[equipment] snapshot path failed, falling back to DB:", e)
 
-    # Fallback: original DB-backed path.
-    result = await db.execute(select(Asset))
-    assets = result.scalars().all()
-    response_data = []
-    for asset in assets:
-        site_name = "Dealer Yard"
-        if asset.current_site_id:
-            site_result = await db.execute(select(Site).where(Site.site_id == asset.current_site_id))
-            site = site_result.scalar_one_or_none()
-            if site:
-                site_name = site.site_name
-        ui_status = "idle"
-        if asset.current_status == "rented":
-            ui_status = "working"
-        elif asset.current_status == "maintenance":
-            ui_status = "maintenance"
-        health = random.randint(60, 100)
-        eq = EquipmentUIResponse(
-            id=asset.asset_id, name=asset.asset_name, model=asset.model or "Unknown",
-            category=asset.equipment_type or "Excavator",
-            image=asset.image_url or "https://images.unsplash.com/photo-1581094288338-2314dddb7a14?w=800&q=80",
-            site=site_name, operator="Unassigned", health=health,
-            engineHours=int(asset.total_engine_hours or 0),
-            idleHours=random.randint(0, 20) if ui_status != "working" else 0,
-            rentalRemainingDays=random.randint(1, 30), status=ui_status, riskScore=100 - health,
-        )
-        response_data.append(eq)
-    return response_data
+    # Fallback: original DB-backed path. Open a session manually so a missing
+    # DB doesn't break dependency resolution before we even get here.
+    try:
+        async with AsyncSessionLocal() as db:
+            result = await db.execute(select(Asset))
+            assets = result.scalars().all()
+            response_data = []
+            for asset in assets:
+                site_name = "Dealer Yard"
+                if asset.current_site_id:
+                    site_result = await db.execute(select(Site).where(Site.site_id == asset.current_site_id))
+                    site = site_result.scalar_one_or_none()
+                    if site:
+                        site_name = site.site_name
+                ui_status = "idle"
+                if asset.current_status == "rented":
+                    ui_status = "working"
+                elif asset.current_status == "maintenance":
+                    ui_status = "maintenance"
+                # Deterministic health from the maintenance model where possible,
+                # else a stable value derived from the asset id (no randomness).
+                try:
+                    pm = ml.predict_maintenance(asset.asset_id)
+                    health = int(pm["health"])
+                    risk = int(pm["riskScore"])
+                except Exception:
+                    health = _stable_int(asset.asset_id + "h", 60, 100)
+                    risk = 100 - health
+                eq = EquipmentUIResponse(
+                    id=asset.asset_id, name=asset.asset_name, model=asset.model or "Unknown",
+                    category=asset.equipment_type or "Excavator",
+                    image=asset.image_url or "https://images.unsplash.com/photo-1581094288338-2314dddb7a14?w=800&q=80",
+                    site=site_name, operator="Unassigned", health=health,
+                    engineHours=int(asset.total_engine_hours or 0),
+                    idleHours=0 if ui_status == "working" else _stable_int(asset.asset_id + "i", 0, 20),
+                    rentalRemainingDays=_stable_int(asset.asset_id, 1, 30), status=ui_status, riskScore=risk,
+                )
+                response_data.append(eq)
+            return response_data
+    except Exception as e:
+        print("[equipment] DB fallback unavailable:", e)
+        return []
 
 
 @router.get("/{asset_id}/maintenance-forecast")

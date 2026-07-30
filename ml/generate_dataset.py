@@ -542,6 +542,9 @@ def main():
     print(f"  demand rows: {len(demand)}")
 
     print("Writing CSVs...")
+    # NOTE: usage_logs is ~1.27M rows (~192 MB) — too big for GitHub (100 MB
+    # limit). We write the FULL file as `usage_logs_full.csv` (gitignored) and
+    # then produce a stratified <20 MB `usage_logs.csv` that IS committed.
     for name, rows in [
         ("equipment.csv", equipment),
         ("sites.csv", sites),
@@ -549,12 +552,23 @@ def main():
         ("customers.csv", customers),
         ("weather.csv", weather),
         ("rentals.csv", rentals),
-        ("usage_logs.csv", usage_logs),
+        ("usage_logs_full.csv", usage_logs),
         ("demand_daily.csv", demand),
     ]:
         p = write_csv(name, rows)
         size_kb = os.path.getsize(p) / 1024
         print(f"  {name:20s} {len(rows):>8,} rows   {size_kb:>8,.1f} KB")
+
+    # Produce the committable, GitHub-friendly reduced usage_logs.csv.
+    print("Reducing usage_logs to a <20 MB committable sample...")
+    try:
+        from reduce_dataset import reduce_usage_logs
+        reduce_usage_logs(OUT_DIR / "usage_logs_full.csv",
+                          OUT_DIR / "usage_logs.csv",
+                          target_mb=17.0, verbose=True)
+    except Exception as e:  # pandas missing or any issue — don't fail generation
+        print(f"  [warn] could not auto-reduce usage_logs.csv ({e}).")
+        print(f"         Run manually: python reduce_dataset.py")
 
     # Quick summary — anomaly & bulk-order distribution
     anom = sum(1 for r in usage_logs if r["is_anomaly"])

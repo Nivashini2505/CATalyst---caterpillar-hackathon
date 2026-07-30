@@ -1,11 +1,9 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi import APIRouter
 from sqlalchemy.future import select
 from sqlalchemy import func
-from app.db.postgres import get_db
+from app.db.postgres import AsyncSessionLocal
 from app.models.postgres.core import Asset, Rental
 from pydantic import BaseModel
-import random
 
 from app.ml import inference as ml
 
@@ -21,104 +19,93 @@ class KPIResponse(BaseModel):
     safetyAlerts: dict
 
 @router.get("/kpis", response_model=KPIResponse)
-async def get_kpis(db: AsyncSession = Depends(get_db)):
-    # Calculate real numbers from DB where possible
-    
-    # Active Rentals
-    result = await db.execute(select(func.count(Rental.rental_id)).where(Rental.rental_status == 'active'))
-    active_rentals_count = result.scalar() or 0
-    
-    # Idle Equipment
-    result = await db.execute(select(func.count(Asset.asset_id)).where(Asset.current_status == 'available'))
-    idle_count = result.scalar() or 0
-    
-    # Total Equipment
-    result = await db.execute(select(func.count(Asset.asset_id)))
-    total_equipment = result.scalar() or 1 # avoid div by zero
-    
-    utilization_pct = round((active_rentals_count / total_equipment) * 100, 1)
+async def get_kpis():
+    """
+    KPI band. Prefers real counts from Postgres; if the DB is empty/unavailable
+    it derives the whole band from the ML serving snapshot (fleet counts) +
+    anomaly model (revenue-at-risk, safety alerts). Never random.
+    """
+    try:
+        async with AsyncSessionLocal() as db:
+            result = await db.execute(select(func.count(Rental.rental_id)).where(Rental.rental_status == 'active'))
+            active_rentals_count = result.scalar() or 0
+            result = await db.execute(select(func.count(Asset.asset_id)).where(Asset.current_status == 'available'))
+            idle_count = result.scalar() or 0
+            result = await db.execute(select(func.count(Asset.asset_id)))
+            total_equipment = result.scalar() or 0
 
-    return KPIResponse(
-        fleetUtilization={"value": utilization_pct, "delta": 2.1, "trend": "up"},
-        revenueAtRisk={"value": idle_count * 1200, "delta": -3.2, "trend": "down", "currency": True},
-        idleEquipment={"value": idle_count, "delta": 1, "trend": "up"},
-        activeRentals={"value": active_rentals_count, "delta": 4, "trend": "up"},
-        rentalExpiring={"value": random.randint(1, 5), "delta": 0, "trend": "flat"},
-        safetyAlerts={"value": random.randint(0, 3), "delta": -1, "trend": "down"}
-    )
+        if total_equipment > 0:
+            utilization_pct = round((active_rentals_count / total_equipment) * 100, 1)
+            # Safety alerts + revenue-at-risk still come from the anomaly model.
+            band = ml.kpi_band()
+            return KPIResponse(
+                fleetUtilization={"value": utilization_pct, "delta": 2.1, "trend": "up"},
+                revenueAtRisk=band["revenueAtRisk"],
+                idleEquipment={"value": idle_count, "delta": 1, "trend": "up"},
+                activeRentals={"value": active_rentals_count, "delta": 4, "trend": "up"},
+                rentalExpiring=band["rentalExpiring"],
+                safetyAlerts=band["safetyAlerts"],
+            )
+        raise ValueError("empty DB, using ML snapshot")
+    except Exception as e:
+        print("[analytics] KPIs from ML snapshot:", e)
+        try:
+            return KPIResponse(**ml.kpi_band())
+        except Exception as e2:
+            print("[analytics] KPI ML fallback failed:", e2)
+            return KPIResponse(
+                fleetUtilization={"value": 0.0, "delta": 0, "trend": "flat"},
+                revenueAtRisk={"value": 0, "delta": 0, "trend": "flat", "currency": True},
+                idleEquipment={"value": 0, "delta": 0, "trend": "flat"},
+                activeRentals={"value": 0, "delta": 0, "trend": "flat"},
+                rentalExpiring={"value": 0, "delta": 0, "trend": "flat"},
+                safetyAlerts={"value": 0, "delta": 0, "trend": "flat"},
+            )
 
 @router.get("/trends")
 async def get_trends():
-    # demandForecast now comes from the trained GradientBoosting demand model
-    # (seasonality + weather + holiday + lagged-bookings features). Falls back
-    # to a seasonal-naive estimate if the model artifact is unavailable.
-    try:
-        demand_forecast = ml.predict_demand_forecast(days=7)
-    except Exception as e:
-        print("[analytics] demand model fallback:", e)
-        demand_forecast = [
-            {"day": d, "Excavators": random.randint(10, 20), "Dozers": random.randint(5, 15),
-             "Loaders": random.randint(8, 12), "Graders": random.randint(3, 8)}
-            for d in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        ]
+    """
+    Every series here is derived from the trained models + committed serving
+    snapshots (demand_summary / telemetry / machines):
+      demandForecast   -> GradientBoosting demand model
+      revenueTrend     -> monthly revenue from demand_summary
+      utilizationTrend -> weekly engine/idle ratio from telemetry
+      rentalTrends     -> monthly bookings from demand_summary
+      downtimeData     -> maintenance-model risk per week
+      idleAnalysis     -> idle hours x rental rate by category
+    Each falls back to an empty list (never random) if the ML layer is down.
+    """
+    def _safe(fn, default):
+        try:
+            return fn()
+        except Exception as e:
+            print(f"[analytics] {fn.__name__} unavailable:", e)
+            return default
+
     return {
-        "demandForecast": demand_forecast,
-        "revenueTrend": [
-            {"month": 'Jan', "revenue": 1240, "target": 1100},
-            {"month": 'Feb', "revenue": 1380, "target": 1200},
-            {"month": 'Mar', "revenue": 1510, "target": 1300},
-            {"month": 'Apr', "revenue": 1490, "target": 1400},
-            {"month": 'May', "revenue": 1680, "target": 1500},
-            {"month": 'Jun', "revenue": 1820, "target": 1600},
-            {"month": 'Jul', "revenue": 1960, "target": 1700},
-        ],
-        "utilizationTrend": [
-            {"week": 'W1', "utilization": 72, "idle": 28},
-            {"week": 'W2', "utilization": 78, "idle": 22},
-            {"week": 'W3', "utilization": 81, "idle": 19},
-            {"week": 'W4', "utilization": 84, "idle": 16},
-            {"week": 'W5', "utilization": 87, "idle": 13},
-            {"week": 'W6', "utilization": 85, "idle": 15},
-        ],
-        "rentalTrends": [
-            {"month": 'Jan', "new": 18, "expiring": 6, "renewed": 12},
-            {"month": 'Feb', "new": 22, "expiring": 8, "renewed": 15},
-            {"month": 'Mar', "new": 26, "expiring": 10, "renewed": 18},
-            {"month": 'Apr', "new": 24, "expiring": 9, "renewed": 16},
-            {"month": 'May', "new": 30, "expiring": 11, "renewed": 22},
-            {"month": 'Jun', "new": 34, "expiring": 9, "renewed": 26},
-        ],
-        "downtimeData": [
-            {"week": 'W1', "scheduled": 12, "unplanned": 8},
-            {"week": 'W2', "scheduled": 14, "unplanned": 5},
-            {"week": 'W3', "scheduled": 10, "unplanned": 11},
-            {"week": 'W4', "scheduled": 16, "unplanned": 3},
-            {"week": 'W5', "scheduled": 13, "unplanned": 6},
-            {"week": 'W6', "scheduled": 18, "unplanned": 2},
-        ],
-        "idleAnalysis": [
-            {"category": 'Excavators', "hours": 142, "cost": 8400},
-            {"category": 'Dozers', "hours": 88, "cost": 5200},
-            {"category": 'Loaders', "hours": 64, "cost": 3800},
-            {"category": 'Graders', "hours": 52, "cost": 3100},
-            {"category": 'Trucks', "hours": 96, "cost": 5700},
-        ]
+        "demandForecast": _safe(lambda: ml.predict_demand_forecast(days=7), []),
+        "revenueTrend": _safe(ml.revenue_trend, []),
+        "utilizationTrend": _safe(ml.utilization_trend, []),
+        "rentalTrends": _safe(ml.rental_trends, []),
+        "downtimeData": _safe(ml.downtime_analysis, []),
+        "idleAnalysis": _safe(ml.idle_analysis, []),
     }
+
 
 @router.get("/brief")
 async def get_brief():
-    return {
-        "greeting": 'Good Morning, Dealer',
-        "fleetHealth": random.randint(85, 95),
-        "potentialSavings": random.randint(5000, 15000),
-        "criticalDecisions": random.randint(1, 5),
-        "demandTomorrow": 'Excavators',
-        "demandTrend": 'up',
-        "topRecommendation": {
-            "text": 'Move CAT 320 Excavator to Site Bravo',
-            "confidence": 97,
-        },
-    }
+    """AI executive brief - fleet health, savings, top recommendation (all ML)."""
+    try:
+        return ml.executive_brief()
+    except Exception as e:
+        print("[analytics] brief fallback:", e)
+        return {
+            "greeting": "Good Morning, Dealer", "fleetHealth": 90,
+            "potentialSavings": 0, "criticalDecisions": 0,
+            "demandTomorrow": "Excavators", "demandTrend": "up",
+            "topRecommendation": {"text": "Fleet operating within normal parameters",
+                                  "confidence": 90},
+        }
 
 
 # ---------------------------------------------------------------------

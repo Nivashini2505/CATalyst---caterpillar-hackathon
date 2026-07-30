@@ -1,1 +1,19 @@
-ml/data/usage_logs.csv 
+# The reduced usage_logs.csv (~17 MB, stratified sample) IS committed for the
+# lightweight ML pipeline. The FULL ~192 MB file is generated locally and
+# ignored (regenerate any time with `python ml/generate_dataset.py`).
+ml/data/usage_logs_full.csv
+
+# Local env / secrets — never commit real DB URIs or keys
+.env
+backend/.env
+*.env.local
+
+# ML training intermediates (regenerable via the training pipeline).
+# The committed artifacts + serving snapshot under backend/app/ml/ are what
+# the app actually loads; these intermediates are big and reproducible.
+backend/app/ml/training/data/
+backend/app/ml/training/artifacts/
+
+# Python
+__pycache__/
+*.pyc

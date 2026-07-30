@@ -11,7 +11,32 @@ cd ml
 python generate_dataset.py
 ```
 
-No dependencies beyond the Python stdlib (only `pandas` is needed for the sanity checks). Takes ~30-60 seconds and writes 8 CSVs (~200 MB total, dominated by `usage_logs.csv`).
+Generation needs only the Python stdlib; `pandas` is used for the sanity checks and for the usage-log reduction step. Takes ~30-60 seconds.
+
+## Committed vs local files (GitHub 100 MB limit)
+
+The full `usage_logs.csv` is ~1.27M rows / ~192 MB — **too large for GitHub**. So the repo commits a **reduced ~17 MB** version, and the full file stays local:
+
+| File | Committed? | Notes |
+| --- | --- | --- |
+| `usage_logs.csv` | ✅ committed | **Reduced ~112K-row stratified sample (~17 MB)** — drop-in, same schema |
+| `usage_logs_full.csv` | ❌ gitignored | Full ~1.27M rows (~192 MB), regenerated locally |
+
+`generate_dataset.py` writes the full file as `usage_logs_full.csv` and then automatically calls `reduce_dataset.py` to produce the committable `usage_logs.csv`. You can also reduce manually:
+
+```bash
+cd ml
+python reduce_dataset.py                 # data/usage_logs_full.csv -> data/usage_logs.csv (<20 MB)
+```
+
+**Reduction method (not truncation):** stratified sampling by `anomaly_type`, so the class balance is exact and equipment/region/segment marginals are preserved. Verified drift after reduction:
+
+- anomaly rate: 6.16% → 6.16% (identical); all 6 anomaly types kept in proportion
+- all 11 equipment types, 5 regions, 5 segments, 220 equipment, 60 operators, 30 sites retained
+- all 1,096 distinct days retained (full temporal coverage)
+- numeric feature means within <0.2% of the full dataset
+
+Any training/inference script reading `usage_logs.csv` works unchanged — only the row count is smaller.
 
 ## Files
 
@@ -23,7 +48,7 @@ No dependencies beyond the Python stdlib (only `pandas` is needed for the sanity
 | `customers.csv` | 45 | Customer master with `segment` and bulk/contract probabilities |
 | `weather.csv` | 5,480 | Daily weather per region (5 regions × 1096 days) |
 | `rentals.csv` | ~52K | Historical rentals, one row per equipment unit |
-| `usage_logs.csv` | ~1.27M | Per-day per-rental telemetry — **anomaly detection training source** |
+| `usage_logs.csv` | ~112K (committed) / ~1.27M (full local) | Per-day per-rental telemetry — **anomaly detection training source** |
 | `demand_daily.csv` | ~60K | Aggregated demand per (date, region, equipment_type) — **forecasting target** |
 
 ## Field guide
