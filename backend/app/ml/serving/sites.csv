@@ -1,0 +1,181 @@
+site_id,site_name,city,country,project_type,address,latitude,longitude,manager_id,risk_level,terrain,is_snow_prone,is_mining_region,site_start_date,site_expected_end_date,workforce_count,machinery_slots,status
+SITE0001,BHP Olympic Dam Underground Expansion,Kalgoorlie,Australia,Mining,"26 Industrial Rd, Kalgoorlie",-30.728,121.4853,MGR0044,High,Flat,False,True,2021-12-24,2025-06-09,271,38,active
+SITE0002,Ganga Expressway Package 2,Chennai,India,Highway,"702 Industrial Rd, Chennai",13.1045,80.257,MGR0063,Low,Urban,False,False,2022-10-05,2024-05-20,567,6,active
+SITE0003,Newmont Cripple Creek Extension,Denver,USA,Mining,"924 Industrial Rd, Denver",39.8253,-104.9409,MGR0037,Low,Hilly,True,True,2022-10-24,2024-08-12,26,29,active
+SITE0004,Coal India Korba Mine Ext,Mumbai,India,Mining,"578 Industrial Rd, Mumbai",18.9961,72.8691,MGR0020,Medium,Flat,False,False,2022-04-17,2023-06-28,684,35,active
+SITE0005,New Bridge over Yarra,Gold Coast,Australia,Bridge,"933 Industrial Rd, Gold Coast",-28.0637,153.4207,MGR0096,Medium,Desert,False,False,2021-11-01,2025-05-09,522,21,active
+SITE0006,Adani Carmichael Coal Handling,Kolkata,India,Mining,"901 Industrial Rd, Kolkata",22.5711,88.3198,MGR0024,Low,Hilly,False,False,2021-08-24,2025-08-26,313,16,active
+SITE0007,Pacific Highway M1 Extension,Darwin,Australia,Highway,"825 Industrial Rd, Darwin",-12.3787,130.8485,MGR0052,Low,Flat,False,False,2022-11-11,2026-04-13,490,31,active
+SITE0008,Cologne Rheinenergie Wind Farm,Bremen,Germany,Wind,"214 Industrial Rd, Bremen",53.0585,8.789,MGR0060,High,Coastal,True,False,2022-07-27,2025-07-18,447,34,active
+SITE0009,Nordsee One Offshore Package 3,Leipzig,Germany,Wind,"682 Industrial Rd, Leipzig",51.4206,12.4187,MGR0059,Low,Desert,True,True,2021-12-22,2024-10-19,562,18,active
+SITE0010,Ganga Expressway Package 2,Nagpur,India,Highway,"922 Industrial Rd, Nagpur",21.1377,79.0386,MGR0034,Medium,Coastal,False,False,2021-01-26,2024-02-09,403,24,active
+SITE0011,NMDC Bailadila Iron Ore Mine Expansion,Chennai,India,Mining,"53 Industrial Rd, Chennai",13.0409,80.2466,MGR0084,Low,Rocky,False,False,2022-01-29,2025-05-22,584,15,active
+SITE0012,Stuttgart 21 Feuerbach Tunnel,Bremen,Germany,Rail,"396 Industrial Rd, Bremen",53.1047,8.8395,MGR0068,Medium,Hilly,True,False,2022-11-08,2025-01-03,299,14,active
+SITE0013,Amazon HQ2 Arlington Site B,Pittsburgh,USA,Building,"480 Industrial Rd, Pittsburgh",40.4043,-79.9559,MGR0018,Low,Desert,True,True,2021-10-07,2024-07-16,153,36,active
+SITE0014,NMDC Bailadila Iron Ore Mine Expansion,Bhubaneswar,India,Mining,"22 Industrial Rd, Bhubaneswar",20.2507,85.7939,MGR0017,Low,Flat,False,True,2022-09-27,2024-03-20,359,10,active
+SITE0015,Bharatmala Corridor NH-27,Pune,India,Highway,"861 Industrial Rd, Pune",18.4479,73.7827,MGR0024,Low,Urban,False,False,2022-04-28,2025-01-16,343,33,active
+SITE0016,Gerald Desmond Replacement Bridge Rehab,Salt Lake City,USA,Bridge,"923 Industrial Rd, Salt Lake City",40.7148,-111.8923,MGR0009,High,Hilly,True,True,2021-05-06,2023-03-29,445,12,active
+SITE0017,BART Silicon Valley Phase II,Pittsburgh,USA,Metro,"717 Industrial Rd, Pittsburgh",40.3909,-79.921,MGR0070,High,Desert,True,True,2021-02-27,2024-10-15,275,12,active
+SITE0018,Stuttgart 21 Feuerbach Tunnel,Munich,Germany,Rail,"485 Industrial Rd, Munich",48.0885,11.5912,MGR0013,Low,Hilly,True,False,2022-07-17,2025-09-04,40,28,active
+SITE0019,Coffs Harbour Bypass,Port Hedland,Australia,Highway,"907 Industrial Rd, Port Hedland",-20.2457,118.6157,MGR0004,Low,Flat,False,True,2021-07-17,2024-06-20,398,9,active
+SITE0020,Ganga Setu Foundation Works,Bhubaneswar,India,Bridge,"985 Industrial Rd, Bhubaneswar",20.2779,85.8319,MGR0024,Medium,Rocky,False,True,2022-08-11,2024-09-17,748,10,active
+SITE0021,I-405 Sepulveda Pass,Anchorage,USA,Highway,"872 Industrial Rd, Anchorage",61.19,-149.9503,MGR0041,Low,Urban,True,True,2022-06-12,2025-06-28,306,38,active
+SITE0022,New Bridge over Yarra,Sydney,Australia,Bridge,"718 Industrial Rd, Sydney",-33.8382,151.1801,MGR0042,Low,Coastal,False,False,2022-10-10,2025-02-10,463,26,active
+SITE0023,NTPC Rajasthan Ultra Mega Solar,Nagpur,India,Solar,"33 Industrial Rd, Nagpur",21.1926,79.128,MGR0016,Low,Urban,False,False,2021-12-27,2026-01-29,30,6,active
+SITE0024,Adani Carmichael Coal Handling,Bengaluru,India,Mining,"714 Industrial Rd, Bengaluru",12.9799,77.6431,MGR0078,Low,Rocky,False,False,2022-10-27,2025-05-02,544,32,active
+SITE0025,Gerald Desmond Replacement Bridge Rehab,Seattle,USA,Bridge,"198 Industrial Rd, Seattle",47.579,-122.2929,MGR0094,Medium,Rocky,True,False,2022-03-10,2026-04-14,105,33,active
+SITE0026,Melbourne Quarter Tower,Melbourne,Australia,Building,"831 Industrial Rd, Melbourne",-37.7747,144.948,MGR0076,Low,Flat,False,False,2022-08-08,2023-09-24,268,9,active
+SITE0027,Ganga Expressway Package 2,Delhi,India,Highway,"10 Industrial Rd, Delhi",28.5924,77.2255,MGR0043,Medium,Desert,False,False,2022-09-04,2024-02-05,369,9,active
+SITE0028,Vedanta Rampura Agucha Zinc Mine,Kolkata,India,Mining,"58 Industrial Rd, Kolkata",22.671,88.3523,MGR0017,Medium,Hilly,False,False,2021-03-15,2022-11-19,783,10,active
+SITE0029,Chennai Metro Phase 2 - Depot Site,Nagpur,India,Metro,"52 Industrial Rd, Nagpur",21.1233,79.1471,MGR0081,Medium,Coastal,False,False,2022-04-08,2024-06-11,348,38,active
+SITE0030,NTPC Rajasthan Ultra Mega Solar,Bengaluru,India,Solar,"750 Industrial Rd, Bengaluru",12.975,77.6379,MGR0033,Medium,Flat,False,False,2021-08-09,2024-03-20,473,16,active
+SITE0031,Brent Spence Bridge Replacement,Dallas,USA,Bridge,"590 Industrial Rd, Dallas",32.8504,-96.8924,MGR0026,High,Desert,False,False,2022-07-08,2026-07-22,146,9,active
+SITE0032,Mumbai-Nagpur Samruddhi Expressway,Pune,India,Highway,"616 Industrial Rd, Pune",18.5185,73.8452,MGR0079,Medium,Desert,False,False,2021-02-20,2023-10-20,312,18,active
+SITE0033,Amazon HQ2 Arlington Site B,Seattle,USA,Building,"289 Industrial Rd, Seattle",47.5581,-122.428,MGR0061,Medium,Flat,True,False,2022-11-25,2025-04-23,83,9,active
+SITE0034,I-5 Rose Quarter Improvement,Salt Lake City,USA,Highway,"13 Industrial Rd, Salt Lake City",40.6812,-111.8858,MGR0008,High,Desert,True,True,2021-01-11,2024-07-12,110,25,active
+SITE0035,Google Kirkland Campus Phase 2,Seattle,USA,Building,"462 Industrial Rd, Seattle",47.5795,-122.3722,MGR0071,Low,Coastal,True,False,2022-03-09,2024-12-21,399,36,active
+SITE0036,Bogibeel Rail-cum-Road Extension,Jamshedpur,India,Bridge,"44 Industrial Rd, Jamshedpur",22.8093,86.1683,MGR0036,Medium,Coastal,False,True,2021-04-10,2023-03-25,496,34,active
+SITE0037,Adani Carmichael Coal Handling,Ahmedabad,India,Mining,"756 Industrial Rd, Ahmedabad",23.087,72.5404,MGR0084,Medium,Coastal,False,False,2022-06-29,2024-04-14,45,13,active
+SITE0038,EnBW Baltic 2 Foundation Refit,Duesseldorf,Germany,Wind,"15 Industrial Rd, Duesseldorf",51.303,6.772,MGR0031,Medium,Desert,True,False,2021-10-19,2024-11-05,196,14,active
+SITE0039,Brent Spence Bridge Replacement,Denver,USA,Bridge,"278 Industrial Rd, Denver",39.7066,-105.0265,MGR0040,Low,Flat,True,True,2021-08-06,2023-06-08,529,30,active
+SITE0040,Bogibeel Rail-cum-Road Extension,Raipur,India,Bridge,"444 Industrial Rd, Raipur",21.3271,81.6644,MGR0092,Medium,Hilly,False,True,2021-03-21,2025-01-06,519,8,active
+SITE0041,SR-99 Alaskan Way Tunnel Completion,Dallas,USA,Highway,"145 Industrial Rd, Dallas",32.7387,-96.791,MGR0089,Low,Coastal,False,False,2021-08-01,2024-03-15,241,31,active
+SITE0042,Amazon HQ2 Arlington Site B,Chicago,USA,Building,"701 Industrial Rd, Chicago",41.7602,-87.6964,MGR0029,Medium,Urban,True,False,2021-02-25,2023-11-23,144,13,active
+SITE0043,Meta Prineville Data Center,Seattle,USA,Building,"579 Industrial Rd, Seattle",47.5687,-122.3708,MGR0099,High,Flat,True,False,2022-07-24,2025-08-18,38,33,active
+SITE0044,Gerald Desmond Replacement Bridge Rehab,Phoenix,USA,Bridge,"650 Industrial Rd, Phoenix",33.5091,-112.1697,MGR0089,High,Coastal,False,True,2022-04-07,2025-01-06,307,40,active
+SITE0045,Adani Kutch Solar Park Phase 3,Pune,India,Solar,"726 Industrial Rd, Pune",18.449,73.8793,MGR0022,Medium,Hilly,False,False,2022-01-07,2024-04-19,275,36,active
+SITE0046,LAX Terminal 9 Modernization,Houston,USA,Airport,"84 Industrial Rd, Houston",29.7719,-95.3873,MGR0040,Medium,Coastal,False,False,2022-07-04,2025-04-22,637,22,active
+SITE0047,Bengaluru-Chennai Expressway Phase 1,Ahmedabad,India,Highway,"486 Industrial Rd, Ahmedabad",23.1251,72.6023,MGR0024,Low,Desert,False,False,2021-11-25,2023-03-25,23,25,active
+SITE0048,Rio Tinto Kennecott Bingham Canyon,Pittsburgh,USA,Mining,"497 Industrial Rd, Pittsburgh",40.5017,-79.9984,MGR0099,High,Urban,True,True,2022-02-26,2024-12-12,569,17,active
+SITE0049,A20 Kuestenautobahn Continuation,Dortmund,Germany,Highway,"537 Industrial Rd, Dortmund",51.4864,7.4387,MGR0055,Medium,Rocky,True,True,2022-10-01,2024-11-03,274,29,active
+SITE0050,O'Hare 21 Global Terminal,Houston,USA,Airport,"26 Industrial Rd, Houston",29.8068,-95.3312,MGR0021,Low,Desert,False,False,2022-07-08,2025-03-05,800,31,active
+SITE0051,Reliance Corporate Park BKC,Jamshedpur,India,Building,"569 Industrial Rd, Jamshedpur",22.7937,86.2265,MGR0084,Low,Coastal,False,True,2021-03-02,2024-04-22,796,25,active
+SITE0052,Vedanta Rampura Agucha Zinc Mine,Hyderabad,India,Mining,"292 Industrial Rd, Hyderabad",17.4331,78.4585,MGR0034,Low,Hilly,False,False,2021-03-21,2024-10-04,350,6,active
+SITE0053,Infosys Pune Campus Phase 4,Pune,India,Building,"852 Industrial Rd, Pune",18.5032,73.879,MGR0075,Medium,Urban,False,False,2022-07-10,2025-04-15,46,32,active
+SITE0054,Gerald Desmond Replacement Bridge Rehab,Minneapolis,USA,Bridge,"332 Industrial Rd, Minneapolis",44.8884,-93.2417,MGR0077,Medium,Urban,True,False,2022-10-28,2025-05-29,60,37,active
+SITE0055,Adani Kutch Solar Park Phase 3,Nagpur,India,Solar,"144 Industrial Rd, Nagpur",21.0895,79.1353,MGR0092,Low,Urban,False,False,2022-09-28,2024-02-14,187,20,active
+SITE0056,Signature Bridge Approach Works,Pune,India,Bridge,"769 Industrial Rd, Pune",18.6278,73.8218,MGR0016,Low,Coastal,False,False,2021-10-06,2024-09-08,578,8,active
+SITE0057,Permian Basin Gathering System,Atlanta,USA,Pipeline,"843 Industrial Rd, Atlanta",33.6815,-84.397,MGR0089,Low,Hilly,False,False,2022-06-27,2026-07-23,479,15,active
+SITE0058,Mumbai-Nagpur Samruddhi Expressway,Hyderabad,India,Highway,"54 Industrial Rd, Hyderabad",17.3717,78.5197,MGR0010,Medium,Desert,False,False,2021-02-10,2022-03-31,250,35,active
+SITE0059,Mumbai-Nagpur Samruddhi Expressway,Bengaluru,India,Highway,"331 Industrial Rd, Bengaluru",12.9833,77.5798,MGR0022,Low,Desert,False,False,2021-07-08,2024-04-22,706,30,active
+SITE0060,NMDC Bailadila Iron Ore Mine Expansion,Hyderabad,India,Mining,"42 Industrial Rd, Hyderabad",17.3895,78.4306,MGR0080,Low,Flat,False,False,2021-05-18,2022-10-04,233,19,active
+SITE0061,LAX Terminal 9 Modernization,Houston,USA,Airport,"921 Industrial Rd, Houston",29.8019,-95.2889,MGR0071,High,Coastal,False,False,2021-11-21,2025-09-28,237,14,active
+SITE0062,Meta Prineville Data Center,Atlanta,USA,Building,"524 Industrial Rd, Atlanta",33.6891,-84.467,MGR0026,Low,Hilly,False,False,2021-05-12,2024-06-16,792,21,active
+SITE0063,Ganga Setu Foundation Works,Pune,India,Bridge,"463 Industrial Rd, Pune",18.5003,73.7956,MGR0020,Low,Urban,False,False,2021-02-04,2023-09-11,687,37,active
+SITE0064,A20 Kuestenautobahn Continuation,Cologne,Germany,Highway,"761 Industrial Rd, Cologne",50.8737,6.8902,MGR0013,High,Hilly,True,False,2021-11-01,2023-06-07,224,24,active
+SITE0065,A44n Neubau Section,Dortmund,Germany,Highway,"664 Industrial Rd, Dortmund",51.5039,7.4447,MGR0059,Medium,Urban,True,True,2021-08-15,2022-12-04,278,18,active
+SITE0066,I-35 North Extension Austin Segment 4,Chicago,USA,Highway,"512 Industrial Rd, Chicago",41.8968,-87.658,MGR0019,High,Coastal,True,False,2021-12-26,2024-02-21,757,25,active
+SITE0067,Rio Tinto Kennecott Bingham Canyon,Minneapolis,USA,Mining,"815 Industrial Rd, Minneapolis",44.917,-93.2658,MGR0058,High,Hilly,True,False,2021-07-29,2024-03-04,99,11,active
+SITE0068,Port Botany Container Terminal Expansion,Sydney,Australia,Port,"311 Industrial Rd, Sydney",-33.9217,151.2349,MGR0004,Medium,Desert,False,False,2022-02-25,2023-02-25,601,15,active
+SITE0069,Bharatmala Corridor NH-27,Pune,India,Highway,"78 Industrial Rd, Pune",18.4371,73.7485,MGR0034,Low,Desert,False,False,2021-09-25,2024-10-27,42,24,active
+SITE0070,Leverkusener Rheinbruecke Replacement,Hamburg,Germany,Bridge,"124 Industrial Rd, Hamburg",53.4706,9.9728,MGR0054,High,Desert,True,False,2021-08-22,2023-10-15,718,6,active
+SITE0071,Pilbara Iron Ore Rail Loop - Karratha,Karratha,Australia,Mining,"891 Industrial Rd, Karratha",-20.7508,116.853,MGR0015,High,Desert,False,True,2022-04-06,2025-10-24,590,22,active
+SITE0072,Infosys Pune Campus Phase 4,Nagpur,India,Building,"67 Industrial Rd, Nagpur",21.1176,79.0459,MGR0012,Low,Coastal,False,False,2022-06-29,2024-09-12,50,7,active
+SITE0073,MBTA Green Line Extension Medford,Anchorage,USA,Metro,"983 Industrial Rd, Anchorage",61.2898,-149.8419,MGR0071,Medium,Rocky,True,True,2022-10-18,2024-02-24,746,23,active
+SITE0074,Nordsee One Offshore Package 3,Cologne,Germany,Wind,"987 Industrial Rd, Cologne",50.9868,6.9757,MGR0011,High,Hilly,True,False,2021-01-14,2023-07-24,726,33,active
+SITE0075,Cologne Nord-Sued Stadtbahn,Dortmund,Germany,Metro,"811 Industrial Rd, Dortmund",51.533,7.425,MGR0066,Low,Desert,True,True,2021-05-09,2025-02-02,68,23,active
+SITE0076,LA Metro Purple Line Phase 3,Pittsburgh,USA,Metro,"675 Industrial Rd, Pittsburgh",40.4478,-80.0429,MGR0070,High,Desert,True,True,2022-06-18,2025-07-21,584,39,active
+SITE0077,NTPC Rajasthan Ultra Mega Solar,Nagpur,India,Solar,"382 Industrial Rd, Nagpur",21.0931,79.0073,MGR0080,Medium,Rocky,False,False,2022-06-07,2025-09-06,319,14,active
+SITE0078,Salzgitter Iron Ore Extension,Leipzig,Germany,Mining,"617 Industrial Rd, Leipzig",51.36,12.3813,MGR0059,Low,Hilly,True,True,2021-09-16,2023-03-12,360,27,active
+SITE0079,Rio Tinto Kennecott Bingham Canyon,Anchorage,USA,Mining,"941 Industrial Rd, Anchorage",61.203,-149.922,MGR0005,High,Desert,True,True,2021-12-16,2025-10-18,168,26,active
+SITE0080,Tappan Zee Bridge Approach,Salt Lake City,USA,Bridge,"84 Industrial Rd, Salt Lake City",40.6693,-111.8782,MGR0018,High,Flat,True,True,2022-05-06,2025-07-25,533,39,active
+SITE0081,Jio World Convention Centre Phase 2,Delhi,India,Building,"758 Industrial Rd, Delhi",28.5981,77.2538,MGR0045,Low,Desert,False,False,2021-05-18,2023-04-20,362,36,active
+SITE0082,Ganga Setu Foundation Works,Nagpur,India,Bridge,"225 Industrial Rd, Nagpur",21.1531,79.1235,MGR0098,Medium,Desert,False,False,2021-01-29,2024-04-12,437,11,active
+SITE0083,Coal India Talcher Coalfield Deep Extension,Kolkata,India,Mining,"820 Industrial Rd, Kolkata",22.5722,88.373,MGR0034,Low,Hilly,False,False,2022-12-02,2026-09-30,93,24,active
+SITE0084,Bogibeel Rail-cum-Road Extension,Ahmedabad,India,Bridge,"17 Industrial Rd, Ahmedabad",23.0691,72.5618,MGR0017,Low,Flat,False,False,2022-05-21,2023-07-08,232,16,active
+SITE0085,Hamburg U5 Bramfeld Corridor,Dortmund,Germany,Metro,"968 Industrial Rd, Dortmund",51.5372,7.4431,MGR0068,Low,Coastal,True,True,2022-08-03,2025-12-14,30,24,active
+SITE0086,Bengaluru-Chennai Expressway Phase 1,Pune,India,Highway,"651 Industrial Rd, Pune",18.5138,73.9364,MGR0081,Medium,Flat,False,False,2021-03-08,2024-11-11,715,36,active
+SITE0087,Pilbara Iron Ore Rail Loop - Karratha,Karratha,Australia,Mining,"771 Industrial Rd, Karratha",-20.7044,116.8191,MGR0047,Medium,Flat,False,True,2021-08-05,2024-09-28,452,27,active
+SITE0088,Bridgewater Bridge Replacement Tasmania,Gold Coast,Australia,Bridge,"778 Industrial Rd, Gold Coast",-27.9956,153.336,MGR0064,High,Coastal,False,False,2022-10-24,2026-07-18,278,39,active
+SITE0089,ReNew Power Rajasthan Site,Bengaluru,India,Solar,"768 Industrial Rd, Bengaluru",12.9605,77.5469,MGR0017,Low,Urban,False,False,2021-08-24,2024-10-09,500,7,active
+SITE0090,Infosys Pune Campus Phase 4,Raipur,India,Building,"98 Industrial Rd, Raipur",21.274,81.6202,MGR0035,Low,Hilly,False,True,2021-03-14,2024-07-01,627,6,active
+SITE0091,BHP Olympic Dam Underground Expansion,Karratha,Australia,Mining,"821 Industrial Rd, Karratha",-20.7222,116.8849,MGR0069,High,Desert,False,True,2022-02-24,2025-04-28,761,8,active
+SITE0092,ReNew Power Rajasthan Site,Delhi,India,Solar,"301 Industrial Rd, Delhi",28.5909,77.1878,MGR0092,High,Flat,False,False,2022-06-07,2025-12-18,317,26,active
+SITE0093,Brent Spence Bridge Replacement,Atlanta,USA,Bridge,"256 Industrial Rd, Atlanta",33.7471,-84.431,MGR0021,Low,Desert,False,False,2021-07-27,2025-04-17,689,16,active
+SITE0094,Leverkusener Rheinbruecke Replacement,Berlin,Germany,Bridge,"235 Industrial Rd, Berlin",52.5194,13.4071,MGR0048,Medium,Desert,True,False,2021-12-19,2025-09-24,138,11,active
+SITE0095,ReNew Power Rajasthan Site,Chennai,India,Solar,"376 Industrial Rd, Chennai",13.0941,80.2917,MGR0003,Medium,Coastal,False,False,2021-09-10,2025-06-22,41,38,active
+SITE0096,Bridgewater Bridge Replacement Tasmania,Newcastle,Australia,Bridge,"286 Industrial Rd, Newcastle",-33.0085,151.7174,MGR0065,Medium,Desert,False,True,2021-08-04,2022-10-11,452,9,active
+SITE0097,NTPC Rajasthan Ultra Mega Solar,Hyderabad,India,Solar,"942 Industrial Rd, Hyderabad",17.3266,78.4913,MGR0090,Low,Hilly,False,False,2021-10-18,2025-08-21,143,6,active
+SITE0098,Mumbai-Nagpur Samruddhi Expressway,Bhubaneswar,India,Highway,"383 Industrial Rd, Bhubaneswar",20.2819,85.7111,MGR0084,Medium,Coastal,False,True,2021-01-26,2025-02-17,88,16,active
+SITE0099,Freeport McMoRan Bagdad Copper Expansion,Dallas,USA,Mining,"308 Industrial Rd, Dallas",32.8741,-96.8964,MGR0023,Low,Desert,False,False,2022-05-09,2024-03-05,420,5,active
+SITE0100,Mountain Valley Pipeline Segment 4,Los Angeles,USA,Pipeline,"600 Industrial Rd, Los Angeles",34.0537,-118.2155,MGR0009,Medium,Rocky,False,False,2021-06-13,2023-12-09,160,25,active
+SITE0101,Port Botany Container Terminal Expansion,Karratha,Australia,Port,"220 Industrial Rd, Karratha",-20.7724,116.8782,MGR0072,Low,Coastal,False,True,2021-07-31,2025-04-06,586,39,active
+SITE0102,Melbourne Metro Tunnel Project,Melbourne,Australia,Metro,"490 Industrial Rd, Melbourne",-37.864,144.9717,MGR0076,Medium,Flat,False,False,2022-07-07,2023-11-23,599,15,active
+SITE0103,NTPC Rajasthan Ultra Mega Solar,Ahmedabad,India,Solar,"62 Industrial Rd, Ahmedabad",22.9135,72.6301,MGR0036,Medium,Flat,False,False,2022-03-09,2025-06-18,348,30,active
+SITE0104,NTPC Rajasthan Ultra Mega Solar,Kolkata,India,Solar,"767 Industrial Rd, Kolkata",22.5726,88.2842,MGR0079,High,Coastal,False,False,2021-08-29,2023-12-02,649,37,active
+SITE0105,Barangaroo Central Sydney,Gold Coast,Australia,Building,"295 Industrial Rd, Gold Coast",-27.9853,153.4816,MGR0046,Medium,Flat,False,False,2021-03-29,2025-02-28,463,6,active
+SITE0106,I-95 Bridge Program,Los Angeles,USA,Highway,"379 Industrial Rd, Los Angeles",34.0059,-118.2542,MGR0097,Low,Rocky,False,False,2022-07-06,2023-09-25,495,26,active
+SITE0107,Vedanta Rampura Agucha Zinc Mine,Raipur,India,Mining,"396 Industrial Rd, Raipur",21.2257,81.5911,MGR0090,Medium,Desert,False,True,2021-06-27,2025-03-21,623,40,active
+SITE0108,Pacific Highway M1 Extension,Port Hedland,Australia,Highway,"709 Industrial Rd, Port Hedland",-20.3555,118.5788,MGR0072,Medium,Rocky,False,True,2021-12-22,2023-06-26,565,38,active
+SITE0109,O'Hare 21 Global Terminal,Dallas,USA,Airport,"234 Industrial Rd, Dallas",32.7471,-96.8148,MGR0026,Low,Rocky,False,False,2022-02-10,2025-12-27,265,17,active
+SITE0110,Bengaluru-Chennai Expressway Phase 1,Hyderabad,India,Highway,"271 Industrial Rd, Hyderabad",17.3635,78.5248,MGR0098,Medium,Desert,False,False,2021-10-07,2024-04-29,694,17,active
+SITE0111,EnBW Baltic 2 Foundation Refit,Munich,Germany,Wind,"730 Industrial Rd, Munich",48.1687,11.5053,MGR0055,Medium,Rocky,True,False,2022-05-22,2025-05-31,229,34,active
+SITE0112,Tappan Zee Bridge Approach,Denver,USA,Bridge,"211 Industrial Rd, Denver",39.7095,-104.9278,MGR0027,Medium,Desert,True,True,2021-02-17,2023-07-07,365,16,active
+SITE0113,Newcrest Cadia East Panel Cave 2,Karratha,Australia,Mining,"551 Industrial Rd, Karratha",-20.7217,116.8629,MGR0072,Low,Rocky,False,True,2022-02-28,2025-09-25,640,9,active
+SITE0114,Infosys Pune Campus Phase 4,Ahmedabad,India,Building,"832 Industrial Rd, Ahmedabad",23.0344,72.5583,MGR0002,High,Coastal,False,False,2022-09-25,2024-10-15,485,40,active
+SITE0115,Barrick Cortez Mine,Chicago,USA,Mining,"438 Industrial Rd, Chicago",41.876,-87.65,MGR0021,Medium,Coastal,True,False,2022-03-05,2023-06-17,629,11,active
+SITE0116,LAX Terminal 9 Modernization,Minneapolis,USA,Airport,"371 Industrial Rd, Minneapolis",45.0206,-93.2847,MGR0018,Medium,Flat,True,False,2022-05-31,2024-02-06,62,9,active
+SITE0117,Coal India Talcher Coalfield Deep Extension,Raipur,India,Mining,"41 Industrial Rd, Raipur",21.2458,81.6664,MGR0017,High,Urban,False,True,2021-09-25,2023-11-18,81,5,active
+SITE0118,Vedanta Rampura Agucha Zinc Mine,Bhubaneswar,India,Mining,"226 Industrial Rd, Bhubaneswar",20.2797,85.821,MGR0081,Medium,Urban,False,True,2022-03-31,2024-07-15,789,22,active
+SITE0119,Port Botany Container Terminal Expansion,Newcastle,Australia,Port,"781 Industrial Rd, Newcastle",-32.9462,151.7772,MGR0004,Low,Coastal,False,True,2021-05-15,2024-02-22,228,39,active
+SITE0120,I-95 Bridge Program,Denver,USA,Highway,"128 Industrial Rd, Denver",39.723,-105.0171,MGR0077,Low,Coastal,True,True,2022-03-01,2025-11-20,246,20,active
+SITE0121,Mountain Valley Pipeline Segment 4,Denver,USA,Pipeline,"245 Industrial Rd, Denver",39.7038,-104.9989,MGR0026,Medium,Coastal,True,True,2022-08-15,2023-08-21,613,29,active
+SITE0122,I-70 Corridor Expansion Denver Segment,Phoenix,USA,Highway,"154 Industrial Rd, Phoenix",33.4993,-112.0428,MGR0041,Medium,Coastal,False,True,2021-09-04,2025-02-26,649,29,active
+SITE0123,Bharatmala Corridor NH-27,Hyderabad,India,Highway,"351 Industrial Rd, Hyderabad",17.306,78.4652,MGR0092,Low,Coastal,False,False,2021-09-11,2025-08-19,539,29,active
+SITE0124,A100 Berlin Ring Closure Section 17,Essen,Germany,Highway,"173 Industrial Rd, Essen",51.4237,6.9335,MGR0014,Medium,Hilly,True,True,2021-03-27,2024-05-08,243,25,active
+SITE0125,Tappan Zee Bridge Approach,Chicago,USA,Bridge,"615 Industrial Rd, Chicago",41.8919,-87.6346,MGR0027,High,Flat,True,False,2022-04-10,2025-05-26,722,20,active
+SITE0126,BART Silicon Valley Phase II,Dallas,USA,Metro,"586 Industrial Rd, Dallas",32.8778,-96.8137,MGR0099,Low,Coastal,False,False,2022-11-10,2026-01-14,40,36,active
+SITE0127,Mountain Valley Pipeline Segment 4,Anchorage,USA,Pipeline,"235 Industrial Rd, Anchorage",61.1793,-149.9439,MGR0041,Low,Rocky,True,True,2022-03-16,2025-02-26,510,15,active
+SITE0128,Coal India Korba Mine Ext,Bhubaneswar,India,Mining,"391 Industrial Rd, Bhubaneswar",20.2735,85.854,MGR0098,Low,Hilly,False,True,2022-05-16,2023-07-29,112,15,active
+SITE0129,Jio World Convention Centre Phase 2,Nagpur,India,Building,"955 Industrial Rd, Nagpur",21.181,79.2345,MGR0045,Low,Hilly,False,False,2022-09-12,2026-08-22,320,14,active
+SITE0130,Melbourne Metro Tunnel Project,Adelaide,Australia,Metro,"534 Industrial Rd, Adelaide",-34.9888,138.605,MGR0065,Low,Flat,False,False,2022-01-17,2023-12-24,655,8,active
+SITE0131,Tappan Zee Bridge Approach,Salt Lake City,USA,Bridge,"242 Industrial Rd, Salt Lake City",40.7266,-111.8735,MGR0058,Low,Hilly,True,True,2021-09-25,2023-09-03,637,9,active
+SITE0132,Bogibeel Rail-cum-Road Extension,Delhi,India,Bridge,"780 Industrial Rd, Delhi",28.6831,77.2521,MGR0020,Low,Hilly,False,False,2021-08-16,2025-09-22,176,39,active
+SITE0133,Port of Newcastle Coal Loader Upgrade,Perth,Australia,Port,"833 Industrial Rd, Perth",-32.0109,115.8947,MGR0042,Low,Urban,False,True,2022-02-27,2026-01-13,78,30,active
+SITE0134,Coal India Talcher Coalfield Deep Extension,Mumbai,India,Mining,"588 Industrial Rd, Mumbai",18.9703,72.7587,MGR0022,Medium,Coastal,False,False,2022-03-30,2025-04-20,271,34,active
+SITE0135,Adani Kutch Solar Park Phase 3,Delhi,India,Solar,"69 Industrial Rd, Delhi",28.6014,77.2395,MGR0028,High,Hilly,False,False,2021-02-15,2022-05-12,20,23,active
+SITE0136,Barrick Cortez Mine,Anchorage,USA,Mining,"911 Industrial Rd, Anchorage",61.2355,-149.805,MGR0070,Medium,Desert,True,True,2021-05-27,2024-08-31,552,27,active
+SITE0137,Wismut Kupferschiefer Ext,Essen,Germany,Mining,"960 Industrial Rd, Essen",51.4611,7.0063,MGR0060,Medium,Urban,True,True,2022-03-20,2026-02-24,531,13,active
+SITE0138,Cologne Nord-Sued Stadtbahn,Cologne,Germany,Metro,"619 Industrial Rd, Cologne",50.9953,6.9416,MGR0059,High,Coastal,True,False,2022-01-31,2023-09-24,404,24,active
+SITE0139,MBTA Green Line Extension Medford,Seattle,USA,Metro,"446 Industrial Rd, Seattle",47.6256,-122.3097,MGR0097,Medium,Hilly,True,False,2022-11-16,2025-01-30,480,13,active
+SITE0140,MBTA Green Line Extension Medford,Chicago,USA,Metro,"926 Industrial Rd, Chicago",41.8295,-87.6104,MGR0018,Medium,Coastal,True,False,2022-11-16,2025-02-23,428,34,active
+SITE0141,A14 Nordverlaengerung,Stuttgart,Germany,Highway,"252 Industrial Rd, Stuttgart",48.8851,9.2397,MGR0031,High,Desert,True,False,2021-10-03,2023-01-16,123,23,active
+SITE0142,LA Metro Purple Line Phase 3,Seattle,USA,Metro,"613 Industrial Rd, Seattle",47.5642,-122.2152,MGR0082,Low,Urban,True,False,2021-09-15,2023-02-21,584,35,active
+SITE0143,Delhi Metro Yellow Line Extension,Jamshedpur,India,Metro,"170 Industrial Rd, Jamshedpur",22.8391,86.2241,MGR0034,Low,Flat,False,True,2022-01-19,2025-11-21,169,40,active
+SITE0144,Reliance Corporate Park BKC,Mumbai,India,Building,"460 Industrial Rd, Mumbai",19.0711,72.9118,MGR0098,Medium,Urban,False,False,2021-11-17,2023-01-05,491,27,active
+SITE0145,LAX Terminal 9 Modernization,Chicago,USA,Airport,"905 Industrial Rd, Chicago",41.8837,-87.6288,MGR0099,Medium,Coastal,True,False,2021-06-21,2023-02-28,463,37,active
+SITE0146,Coal India Korba Mine Ext,Raipur,India,Mining,"956 Industrial Rd, Raipur",21.2447,81.6783,MGR0093,High,Rocky,False,True,2022-09-25,2024-08-04,696,33,active
+SITE0147,Leverkusener Rheinbruecke Replacement,Dortmund,Germany,Bridge,"283 Industrial Rd, Dortmund",51.5567,7.4578,MGR0039,Low,Flat,True,True,2022-08-29,2025-10-23,65,24,active
+SITE0148,Ahmedabad-Dholera Expressway,Chennai,India,Highway,"438 Industrial Rd, Chennai",13.0068,80.2725,MGR0034,Medium,Rocky,False,False,2021-10-01,2023-08-07,235,5,active
+SITE0149,Fortescue Solomon Hub Extension,Brisbane,Australia,Mining,"480 Industrial Rd, Brisbane",-27.5057,153.0014,MGR0072,High,Hilly,False,False,2022-09-26,2024-12-17,708,36,active
+SITE0150,Vedanta Rampura Agucha Zinc Mine,Kolkata,India,Mining,"591 Industrial Rd, Kolkata",22.5664,88.3109,MGR0075,Medium,Desert,False,False,2021-08-09,2024-01-19,358,25,active
+SITE0151,Meta Prineville Data Center,Atlanta,USA,Building,"232 Industrial Rd, Atlanta",33.6685,-84.3734,MGR0099,High,Coastal,False,False,2021-04-03,2023-08-18,514,22,active
+SITE0152,Ganga Setu Foundation Works,Raipur,India,Bridge,"821 Industrial Rd, Raipur",21.2527,81.629,MGR0010,High,Flat,False,True,2021-04-06,2023-12-12,171,40,active
+SITE0153,Ahmedabad-Dholera Expressway,Bengaluru,India,Highway,"518 Industrial Rd, Bengaluru",12.9971,77.5616,MGR0024,Low,Desert,False,False,2022-08-24,2026-09-07,429,31,active
+SITE0154,I-35 North Extension Austin Segment 4,Chicago,USA,Highway,"972 Industrial Rd, Chicago",41.8947,-87.5629,MGR0019,High,Flat,True,False,2021-03-04,2024-11-13,341,8,active
+SITE0155,Gerald Desmond Replacement Bridge Rehab,Minneapolis,USA,Bridge,"961 Industrial Rd, Minneapolis",44.9651,-93.17,MGR0058,Low,Rocky,True,False,2022-11-01,2025-09-14,261,36,active
+SITE0156,Melbourne Quarter Tower,Karratha,Australia,Building,"441 Industrial Rd, Karratha",-20.7339,116.8036,MGR0091,High,Rocky,False,True,2022-04-27,2025-08-04,269,15,active
+SITE0157,Ganga Setu Foundation Works,Bhubaneswar,India,Bridge,"85 Industrial Rd, Bhubaneswar",20.3386,85.8189,MGR0016,Medium,Flat,False,True,2022-08-21,2024-02-05,173,39,active
+SITE0158,Keystone Segment 6 Prep,Dallas,USA,Pipeline,"3 Industrial Rd, Dallas",32.8293,-96.7763,MGR0082,Medium,Flat,False,False,2022-06-30,2023-10-13,156,23,active
+SITE0159,New Bridge over Yarra,Newcastle,Australia,Bridge,"170 Industrial Rd, Newcastle",-32.9447,151.8578,MGR0091,High,Rocky,False,True,2022-09-04,2023-11-25,122,7,active
+SITE0160,Rio Tinto Gudai-Darri Iron Ore,Melbourne,Australia,Mining,"919 Industrial Rd, Melbourne",-37.8386,144.8548,MGR0004,Low,Coastal,False,False,2022-05-20,2024-05-02,130,22,active
+SITE0161,Google Kirkland Campus Phase 2,Pittsburgh,USA,Building,"67 Industrial Rd, Pittsburgh",40.4846,-79.9784,MGR0077,Medium,Rocky,True,True,2022-02-14,2023-11-24,181,37,active
+SITE0162,Bengaluru-Chennai Expressway Phase 1,Bhubaneswar,India,Highway,"681 Industrial Rd, Bhubaneswar",20.3603,85.7804,MGR0007,Low,Coastal,False,True,2021-10-26,2024-09-18,483,27,active
+SITE0163,Coffs Harbour Bypass,Adelaide,Australia,Highway,"683 Industrial Rd, Adelaide",-34.9409,138.5827,MGR0065,Low,Hilly,False,False,2022-04-06,2024-12-29,492,14,active
+SITE0164,Berlin U-Bahn Extension U5,Berlin,Germany,Metro,"111 Industrial Rd, Berlin",52.5667,13.4375,MGR0095,High,Hilly,True,False,2022-08-04,2024-06-01,172,9,active
+SITE0165,NTPC Rajasthan Ultra Mega Solar,Pune,India,Solar,"420 Industrial Rd, Pune",18.5311,73.8678,MGR0043,Low,Desert,False,False,2021-07-27,2025-01-03,704,40,active
+SITE0166,Siemens Innovation Campus Erlangen,Frankfurt,Germany,Building,"373 Industrial Rd, Frankfurt",50.0534,8.7205,MGR0073,Low,Hilly,True,False,2021-01-30,2022-04-09,373,9,active
+SITE0167,Coal India Talcher Coalfield Deep Extension,Hyderabad,India,Mining,"803 Industrial Rd, Hyderabad",17.4245,78.6013,MGR0092,Medium,Rocky,False,False,2021-08-15,2024-11-06,480,13,active
+SITE0168,BASF Ludwigshafen Modernization,Hannover,Germany,Building,"8 Industrial Rd, Hannover",52.3994,9.7636,MGR0056,High,Hilly,True,False,2021-05-01,2023-05-12,276,31,active
+SITE0169,Delhi-Meerut Expressway Package 4,Pune,India,Highway,"619 Industrial Rd, Pune",18.5443,73.8219,MGR0022,Medium,Rocky,False,False,2022-04-01,2026-02-14,227,16,active
+SITE0170,Meta Prineville Data Center,Houston,USA,Building,"346 Industrial Rd, Houston",29.8229,-95.3726,MGR0089,Low,Coastal,False,False,2021-12-16,2025-01-17,533,17,active
+SITE0171,ReNew Power Rajasthan Site,Pune,India,Solar,"401 Industrial Rd, Pune",18.5108,73.85,MGR0093,High,Urban,False,False,2022-02-25,2026-02-16,647,17,active
+SITE0172,Microsoft Redmond Campus Refresh,Salt Lake City,USA,Building,"298 Industrial Rd, Salt Lake City",40.7575,-111.9153,MGR0094,Medium,Coastal,True,True,2021-04-06,2025-04-30,65,23,active
+SITE0173,Jio World Convention Centre Phase 2,Ahmedabad,India,Building,"937 Industrial Rd, Ahmedabad",23.0333,72.5666,MGR0090,High,Urban,False,False,2021-10-01,2025-05-07,256,25,active
+SITE0174,DB Frankfurt-Mannheim NBS,Cologne,Germany,Rail,"837 Industrial Rd, Cologne",50.9284,6.9848,MGR0055,Low,Urban,True,False,2021-02-03,2022-04-23,280,30,active
+SITE0175,Mumbai-Nagpur Samruddhi Expressway,Raipur,India,Highway,"3 Industrial Rd, Raipur",21.2552,81.6019,MGR0084,Medium,Flat,False,True,2022-04-02,2025-06-23,300,39,active
+SITE0176,Stuttgart 21 Feuerbach Tunnel,Bremen,Germany,Rail,"788 Industrial Rd, Bremen",53.0411,8.8066,MGR0087,Medium,Flat,True,False,2021-02-15,2023-11-04,528,18,active
+SITE0177,LAX Terminal 9 Modernization,Los Angeles,USA,Airport,"182 Industrial Rd, Los Angeles",34.0149,-118.2846,MGR0023,Medium,Hilly,False,False,2021-10-30,2024-09-01,34,32,active
+SITE0178,Ahmedabad-Dholera Expressway,Kolkata,India,Highway,"954 Industrial Rd, Kolkata",22.5324,88.3766,MGR0003,Medium,Rocky,False,False,2022-08-23,2024-05-14,193,23,active
+SITE0179,A14 Nordverlaengerung,Duesseldorf,Germany,Highway,"100 Industrial Rd, Duesseldorf",51.2874,6.7909,MGR0039,Medium,Rocky,True,False,2022-06-18,2025-06-27,336,39,active
+SITE0180,Munich S-Bahn Second Trunk Line,Dortmund,Germany,Metro,"68 Industrial Rd, Dortmund",51.5579,7.4618,MGR0030,Medium,Rocky,True,True,2022-11-29,2025-04-02,203,12,active

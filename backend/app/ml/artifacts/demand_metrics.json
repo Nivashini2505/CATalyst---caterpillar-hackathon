@@ -1,0 +1,99 @@
+{
+  "model": "GradientBoostingRegressor",
+  "train_rows": 8159,
+  "test_rows": 568,
+  "MAE": 1.493,
+  "MAPE_pct": 59.66,
+  "R2": 0.5132,
+  "features_used": [
+    "month",
+    "iso_week",
+    "seasonality_index",
+    "lag_1w",
+    "lag_4w",
+    "roll_4w",
+    "year",
+    "country_Australia",
+    "country_Germany",
+    "country_India",
+    "country_USA",
+    "machine_type_Air Compressor",
+    "machine_type_Backhoe Loader",
+    "machine_type_Bulldozer",
+    "machine_type_Concrete Mixer",
+    "machine_type_Dump Truck",
+    "machine_type_Excavator",
+    "machine_type_Forklift",
+    "machine_type_Generator",
+    "machine_type_Mobile Crane",
+    "machine_type_Motor Grader",
+    "machine_type_Road Roller",
+    "machine_type_Skid Steer Loader",
+    "machine_type_Snow Plow",
+    "machine_type_Water Pump",
+    "machine_type_Wheel Loader"
+  ],
+  "target": "bookings",
+  "top_features": [
+    {
+      "feature": "roll_4w",
+      "importance": 0.6606379998473606
+    },
+    {
+      "feature": "iso_week",
+      "importance": 0.06211946972191099
+    },
+    {
+      "feature": "seasonality_index",
+      "importance": 0.05456106775551921
+    },
+    {
+      "feature": "lag_4w",
+      "importance": 0.03377659030542582
+    },
+    {
+      "feature": "lag_1w",
+      "importance": 0.03368895726740272
+    },
+    {
+      "feature": "machine_type_Backhoe Loader",
+      "importance": 0.019767970891396598
+    },
+    {
+      "feature": "machine_type_Excavator",
+      "importance": 0.017028136485878576
+    },
+    {
+      "feature": "month",
+      "importance": 0.013168922064341683
+    },
+    {
+      "feature": "country_India",
+      "importance": 0.013017560518503106
+    },
+    {
+      "feature": "year",
+      "importance": 0.011640857388024489
+    },
+    {
+      "feature": "machine_type_Wheel Loader",
+      "importance": 0.011203263438692615
+    },
+    {
+      "feature": "country_Australia",
+      "importance": 0.010450945021882808
+    },
+    {
+      "feature": "country_USA",
+      "importance": 0.009160677034648356
+    },
+    {
+      "feature": "machine_type_Water Pump",
+      "importance": 0.00791668475349327
+    },
+    {
+      "feature": "country_Germany",
+      "importance": 0.006805411286368284
+    }
+  ]
+}

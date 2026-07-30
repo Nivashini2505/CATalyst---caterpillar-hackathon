@@ -1,0 +1,201 @@
+customer_id,company_name,industry,country,headquarters_city,customer_since,credit_score,late_payment_count,customer_tier,primary_contact_name,primary_contact_role,primary_contact_email,primary_contact_phone,payment_terms_days,avg_project_duration_days
+CUST0001,Fluor Corporation - Southeast Region,Infrastructure,USA,Denver,2020-09-23,642,6,Standard,Anthony Anderson,Operations Lead,anthony.anderson@fluor.com,+1-4707281860,30,140
+CUST0002,Tata Projects Ltd - Coal & Minerals Div,Mining,India,Mumbai,2018-11-25,666,3,Standard,Ashok Desai,Equipment Manager,ashok.desai@tata.com,+91-9081027848,30,152
+CUST0003,Multiplex Constructions,Construction,Australia,Port Hedland,2020-09-08,774,2,Premium,Blake Robinson,Site Engineer,blake.robinson@multiplex.com,+61-446939919,15,169
+CUST0004,Turner Construction - West Coast Office,Construction,USA,Dallas,2018-05-28,509,5,Standard,Jason Moore,Construction Manager,jason.moore@turner.com,+1-8126664889,30,236
+CUST0005,Ashoka Buildcon,Construction,India,Jamshedpur,2020-05-09,611,10,Standard,Sanjay Aggarwal,Equipment Manager,sanjay.aggarwal@ashoka.com,+91-8671110493,15,254
+CUST0006,Rio Tinto Kennecott,Mining,USA,Pittsburgh,2020-10-25,671,6,Standard,Jason Smith,Senior Site Engineer,jason.smith@rio.com,+1-5470480520,60,610
+CUST0007,Deutsche Bahn Bau,Infrastructure,Germany,Dortmund,2021-02-28,683,6,Standard,Peter Zimmermann,Site Engineer,peter.zimmermann@deutsche.com,+49-4148407142,60,142
+CUST0008,Suffolk Construction - Rocky Mountain Div,Construction,USA,Seattle,2020-08-22,804,3,Enterprise,Jason Taylor,Deputy Project Manager,jason.taylor@suffolk.com,+1-9726671712,30,326
+CUST0009,Turner Construction - Mining Services Div,Mining,USA,Dallas,2020-01-12,655,4,Standard,Benjamin Jackson,Equipment Manager,benjamin.jackson@turner.com,+1-8702112323,15,460
+CUST0010,Kroell Bau - Bau Sued,Construction,Germany,Duesseldorf,2018-03-23,634,5,Standard,Juergen Schwarz,Deputy Project Manager,juergen.schwarz@kroell.com,+49-6527129795,30,210
+CUST0011,Gammon India - Delhi NCR Division,Construction,India,Chennai,2019-06-17,726,3,Premium,Pradeep Saxena,Deputy Project Manager,pradeep.saxena@gammon.com,+91-6066624635,30,213
+CUST0012,Mortenson Construction - Mining Services Div,Mining,USA,Houston,2019-08-02,824,3,Enterprise,Benjamin Brown,Project Manager,benjamin.brown@mortenson.com,+1-6397752138,30,164
+CUST0013,KEC International,Infrastructure,India,Nagpur,2018-11-18,714,4,Premium,Prakash Reddy,Construction Manager,prakash.reddy@kec.com,+91-7036955025,30,211
+CUST0014,Adani Ports & SEZ - Mumbai Metro Division,Infrastructure,India,Nagpur,2020-01-06,526,9,Standard,Balaji Sharma,Senior Site Engineer,balaji.sharma@adani.com,+91-7927990801,45,550
+CUST0015,Implenia Deutschland - Tiefbau Division,Construction,Germany,Munich,2021-12-17,757,1,Premium,Ulrich Meyer,Senior Site Engineer,ulrich.meyer@implenia.com,+49-8084139498,45,418
+CUST0016,Suffolk Construction - Southeast Region,Road Works,USA,Anchorage,2020-02-03,607,5,Standard,David Wilson,Procurement Manager,david.wilson@suffolk.com,+1-6502362432,60,627
+CUST0017,Balfour Beatty US - Northwest Division,Construction,USA,Salt Lake City,2020-10-27,710,2,Premium,Chris Jones,Site Engineer,chris.jones@balfour.com,+1-8144112417,30,678
+CUST0018,Laing O'Rourke Australia - Pilbara Operations,Construction,Australia,Karratha,2020-09-30,745,3,Premium,Xavier Thompson,Operations Lead,xavier.thompson@laing.com,+61-422725849,30,355
+CUST0019,Lendlease Australia,Construction,Australia,Kalgoorlie,2019-02-25,645,3,Standard,Oliver Brown,Deputy Project Manager,oliver.brown@lendlease.com,+61-422662988,15,702
+CUST0020,Watpac Constructions - Queensland Region,Construction,Australia,Adelaide,2018-10-20,797,3,Enterprise,Jack Harris,Deputy Project Manager,jack.harris@watpac.com,+61-457244204,45,623
+CUST0021,Dilip Buildcon - Mumbai Metro Division,Infrastructure,India,Jamshedpur,2019-07-31,642,4,Standard,Ganesh Krishnan,Senior Site Engineer,ganesh.krishnan@dilip.com,+91-8118516452,30,178
+CUST0022,Multiplex Constructions - Perth Mining Div,Mining,Australia,Mount Isa,2021-08-02,600,2,Standard,Blake Williams,Deputy Project Manager,blake.williams@multiplex.com,+61-443904728,30,609
+CUST0023,Dilip Buildcon - Coal & Minerals Div,Mining,India,Nagpur,2018-02-23,660,6,Standard,Sunil Saxena,Senior Site Engineer,sunil.saxena@dilip.com,+91-7352098330,15,533
+CUST0024,KEC International - Coal & Minerals Div,Mining,India,Kolkata,2018-06-27,689,1,Standard,Sunil Aggarwal,Site Engineer,sunil.aggarwal@kec.com,+91-6034233408,30,230
+CUST0025,Peter Kiewit Sons - Southeast Region,Construction,USA,Chicago,2021-04-07,650,2,Standard,Mark Miller,Operations Lead,mark.miller@peter.com,+1-7147831687,15,618
+CUST0026,Fortescue Metals Group - Perth Mining Div,Mining,Australia,Mount Isa,2021-01-02,656,2,Standard,Callum Robinson,Deputy Project Manager,callum.robinson@fortescue.com,+61-405209356,45,359
+CUST0027,Walsh Group - Rocky Mountain Div,Construction,USA,Phoenix,2020-05-13,613,8,Standard,Scott Miller,Procurement Manager,scott.miller@walsh.com,+1-4868934222,45,491
+CUST0028,Mortenson Construction - Denver Regional,Construction,USA,Minneapolis,2019-07-01,738,1,Premium,Jonathan Walker,Procurement Manager,jonathan.walker@mortenson.com,+1-3397569678,45,208
+CUST0029,Adani Ports & SEZ - Eastern Region,Infrastructure,India,Jamshedpur,2019-04-06,626,3,Standard,Ganesh Joshi,Project Manager,ganesh.joshi@adani.com,+91-8581527840,45,330
+CUST0030,Vedanta Mining - Western Region,Mining,India,Hyderabad,2018-03-21,717,2,Premium,Suresh Pillai,Equipment Manager,suresh.pillai@vedanta.com,+91-7364160473,45,490
+CUST0031,Implenia Deutschland - Berlin Niederlassung,Construction,Germany,Dortmund,2021-09-30,772,3,Premium,Ulrich Becker,Equipment Manager,ulrich.becker@implenia.com,+49-6620010435,45,316
+CUST0032,Whiting-Turner - Denver Regional,Road Works,USA,Denver,2018-08-12,710,5,Premium,Jeffrey Sanchez,Equipment Manager,jeffrey.sanchez@whiting-turner.com,+1-4318282966,15,478
+CUST0033,Adani Ports & SEZ,Infrastructure,India,Kolkata,2021-09-23,587,1,Standard,Harish Saxena,Senior Site Engineer,harish.saxena@adani.com,+91-8227580491,30,460
+CUST0034,Whiting-Turner,Construction,USA,Denver,2019-11-28,757,3,Premium,Eric Wilson,Procurement Manager,eric.wilson@whiting-turner.com,+1-3423790732,30,656
+CUST0035,Hochtief AG - Berlin Niederlassung,Construction,Germany,Leipzig,2021-10-07,687,3,Standard,Karl Fischer,Construction Manager,karl.fischer@hochtief.com,+49-5969043107,30,114
+CUST0036,Coal India Limited - Mumbai Metro Division,Mining,India,Chennai,2020-06-28,800,2,Enterprise,Ravi Aggarwal,Construction Manager,ravi.aggarwal@coal.com,+91-9702191781,15,168
+CUST0037,Gammon India - Coal & Minerals Div,Mining,India,Nagpur,2018-09-15,704,8,Premium,Nikhil Reddy,Senior Site Engineer,nikhil.reddy@gammon.com,+91-9404277003,45,288
+CUST0038,Salzgitter Mannesmann,Mining,Germany,Frankfurt,2020-06-19,630,5,Standard,Uwe Neumann,Site Engineer,uwe.neumann@salzgitter.com,+49-2970984707,15,360
+CUST0039,ADCO Constructions - Pilbara Operations,Construction,Australia,Karratha,2020-05-29,706,2,Premium,Mason Nguyen,Procurement Manager,mason.nguyen@adco.com,+61-494338884,60,608
+CUST0040,Larsen & Toubro Construction,Construction,India,Jamshedpur,2020-09-30,823,3,Enterprise,Prakash Saxena,Senior Site Engineer,prakash.saxena@larsen.com,+91-8481973488,15,496
+CUST0041,Goldbeck GmbH - Hamburg Regional,Construction,Germany,Hamburg,2018-11-10,649,2,Standard,Stefan Weber,Senior Site Engineer,stefan.weber@goldbeck.com,+49-1726947767,45,697
+CUST0042,Shapoorji Pallonji Group - Kolkata Division,Construction,India,Mumbai,2019-03-28,740,3,Premium,Kunal Saxena,Deputy Project Manager,kunal.saxena@shapoorji.com,+91-7082434192,45,408
+CUST0043,Bauer Group - Bau Sued,Infrastructure,Germany,Bremen,2019-04-07,777,2,Premium,Andreas Hartmann,Deputy Project Manager,andreas.hartmann@bauer.com,+49-7638253076,30,331
+CUST0044,Jaiprakash Associates - Mumbai Metro Division,Infrastructure,India,Ahmedabad,2021-04-16,535,1,Standard,Vikram Malhotra,Senior Site Engineer,vikram.malhotra@jaiprakash.com,+91-9250803652,15,255
+CUST0045,Lendlease Australia - Northern Territory Div,Construction,Australia,Brisbane,2018-12-08,635,1,Standard,Harrison King,Operations Lead,harrison.king@lendlease.com,+61-456122786,45,99
+CUST0046,Gammon India,Construction,India,Bhubaneswar,2019-12-02,611,3,Standard,Sunil Mehta,Equipment Manager,sunil.mehta@gammon.com,+91-8421547141,30,234
+CUST0047,Reliance Infrastructure,Road Works,India,Jamshedpur,2019-05-30,623,7,Standard,Prakash Menon,Procurement Manager,prakash.menon@reliance.com,+91-6904593670,30,228
+CUST0048,Jaiprakash Associates - Western Region,Construction,India,Hyderabad,2020-12-13,818,1,Enterprise,Vinay Singh,Site Engineer,vinay.singh@jaiprakash.com,+91-6855847996,15,640
+CUST0049,Fluor Corporation - Infrastructure Group,Infrastructure,USA,Phoenix,2020-06-18,662,2,Standard,Steven Clark,Site Engineer,steven.clark@fluor.com,+1-7515543639,45,688
+CUST0050,Deutsche Bahn Bau - Bau Sued,Infrastructure,Germany,Hamburg,2018-09-06,807,4,Enterprise,Andreas Schwarz,Deputy Project Manager,andreas.schwarz@deutsche.com,+49-1654646678,30,376
+CUST0051,IL&FS Engineering - Coal & Minerals Div,Mining,India,Pune,2018-10-11,728,4,Premium,Kunal Aggarwal,Construction Manager,kunal.aggarwal@ilfs.com,+91-9315623169,60,709
+CUST0052,Ashoka Buildcon - Kolkata Division,Construction,India,Delhi,2018-07-22,701,5,Premium,Rajesh Iyer,Deputy Project Manager,rajesh.iyer@ashoka.com,+91-6629176876,30,258
+CUST0053,Bechtel Corporation - Houston Office,Construction,USA,Seattle,2020-04-22,790,2,Enterprise,Ryan Jackson,Operations Lead,ryan.jackson@bechtel.com,+1-8444062006,15,336
+CUST0054,Granite Construction,Construction,USA,Los Angeles,2021-07-25,632,2,Standard,Steven Taylor,Equipment Manager,steven.taylor@granite.com,+1-5617183757,30,374
+CUST0055,K+S Kali GmbH - Industrieanlagenbau,Mining,Germany,Munich,2021-11-11,839,1,Enterprise,Uwe Krueger,Equipment Manager,uwe.krueger@k+s.com,+49-9015003556,45,444
+CUST0056,Max Boegl Group - NRW Division,Construction,Germany,Cologne,2019-07-11,768,1,Premium,Manfred Lange,Site Engineer,manfred.lange@max.com,+49-1837040208,60,407
+CUST0057,IRCON International,Infrastructure,India,Mumbai,2018-05-17,759,2,Premium,Rohan Kumar,Procurement Manager,rohan.kumar@ircon.com,+91-7180907349,45,497
+CUST0058,Vedanta Mining - Chennai Division,Mining,India,Bhubaneswar,2018-06-17,659,5,Standard,Kunal Kumar,Operations Lead,kunal.kumar@vedanta.com,+91-7951979820,45,267
+CUST0059,Mortenson Construction,Construction,USA,Salt Lake City,2021-01-04,742,4,Premium,James Sanchez,Project Manager,james.sanchez@mortenson.com,+1-2565424740,45,212
+CUST0060,Reliance Infrastructure - Chennai Division,Construction,India,Bhubaneswar,2019-12-13,705,1,Premium,Sunil Yadav,Project Manager,sunil.yadav@reliance.com,+91-8217665352,15,502
+CUST0061,Kiewit Corporation - Infrastructure Group,Construction,USA,Anchorage,2021-10-02,639,2,Standard,Anthony Williams,Project Manager,anthony.williams@kiewit.com,+1-7478340114,30,607
+CUST0062,Bechtel Corporation - Infrastructure Group,Construction,USA,Pittsburgh,2019-05-29,769,2,Premium,Brian Lee,Senior Site Engineer,brian.lee@bechtel.com,+1-2378652730,15,276
+CUST0063,Zueblin AG - Berlin Niederlassung,Infrastructure,Germany,Leipzig,2021-07-19,748,0,Premium,Klaus Wagner,Equipment Manager,klaus.wagner@zueblin.com,+49-5051173495,30,285
+CUST0064,Zueblin AG - Ost Deutschland,Construction,Germany,Munich,2020-05-07,723,3,Premium,Werner Schulz,Deputy Project Manager,werner.schulz@zueblin.com,+49-7183027712,15,591
+CUST0065,Barrick Gold USA - Infrastructure Group,Mining,USA,Houston,2018-09-21,567,9,Standard,Ryan Clark,Project Manager,ryan.clark@barrick.com,+1-3656485964,60,672
+CUST0066,Gammon India - Hyderabad Branch,Construction,India,Delhi,2019-02-15,694,2,Standard,Ganesh Menon,Procurement Manager,ganesh.menon@gammon.com,+91-9321766358,30,354
+CUST0067,Vedanta Mining - Mumbai Metro Division,Mining,India,Jamshedpur,2021-03-21,758,3,Premium,Rohan Bhat,Project Manager,rohan.bhat@vedanta.com,+91-8006810036,60,420
+CUST0068,Granite Construction - Houston Office,Construction,USA,Houston,2021-02-10,667,3,Standard,David Clark,Equipment Manager,david.clark@granite.com,+1-3809932555,30,434
+CUST0069,Turner Construction - Rocky Mountain Div,Construction,USA,Houston,2019-07-17,783,1,Enterprise,Ryan White,Project Manager,ryan.white@turner.com,+1-9770546433,45,697
+CUST0070,Balfour Beatty US - Mining Services Div,Mining,USA,Pittsburgh,2020-02-10,561,4,Standard,Matthew Anderson,Equipment Manager,matthew.anderson@balfour.com,+1-8367536367,45,397
+CUST0071,Coal India Limited,Mining,India,Ahmedabad,2020-06-29,529,9,Standard,Rohan Patel,Construction Manager,rohan.patel@coal.com,+91-8480292044,45,697
+CUST0072,KEC International - Hyderabad Branch,Infrastructure,India,Bhubaneswar,2021-03-22,805,2,Enterprise,Ganesh Menon,Deputy Project Manager,ganesh.menon@kec.com,+91-6557876850,30,145
+CUST0073,CPB Contractors,Construction,Australia,Brisbane,2019-06-03,655,4,Standard,Blake Chen,Construction Manager,blake.chen@cpb.com,+61-400113173,30,295
+CUST0074,CPB Contractors - Melbourne Division,Construction,Australia,Mount Isa,2020-08-18,705,4,Premium,Lucas Nguyen,Senior Site Engineer,lucas.nguyen@cpb.com,+61-420688043,60,473
+CUST0075,Punj Lloyd - Kolkata Division,Construction,India,Jamshedpur,2018-04-04,655,6,Standard,Ravi Krishnan,Deputy Project Manager,ravi.krishnan@punj.com,+91-7616160028,45,338
+CUST0076,Wolff & Mueller - Ost Deutschland,Infrastructure,Germany,Frankfurt,2018-03-22,771,3,Premium,Juergen Richter,Equipment Manager,juergen.richter@wolff.com,+49-5602730904,45,690
+CUST0077,Ashoka Buildcon - Bengaluru Projects,Construction,India,Bhubaneswar,2018-08-23,733,3,Premium,Naveen Menon,Site Engineer,naveen.menon@ashoka.com,+91-9228460161,45,169
+CUST0078,Skanska USA - Houston Office,Construction,USA,Minneapolis,2018-05-03,610,3,Standard,Joshua Williams,Equipment Manager,joshua.williams@skanska.com,+1-2772560008,30,381
+CUST0079,Afcons Infrastructure - Mumbai Metro Division,Infrastructure,India,Kolkata,2021-06-08,765,1,Premium,Ashok Singh,Equipment Manager,ashok.singh@afcons.com,+91-8816934201,45,102
+CUST0080,Shapoorji Pallonji Group - Western Region,Construction,India,Ahmedabad,2021-09-12,734,2,Premium,Rajesh Rao,Construction Manager,rajesh.rao@shapoorji.com,+91-7301179742,45,354
+CUST0081,Wolff & Mueller - Tiefbau Division,Construction,Germany,Bremen,2019-12-16,571,7,Standard,Volker Schroeder,Equipment Manager,volker.schroeder@wolff.com,+49-8557470772,15,243
+CUST0082,Goldbeck GmbH - Tiefbau Division,Construction,Germany,Stuttgart,2021-09-21,610,3,Standard,Dieter Schroeder,Operations Lead,dieter.schroeder@goldbeck.com,+49-8242979770,30,525
+CUST0083,NMDC Limited,Mining,India,Chennai,2020-05-11,773,3,Premium,Rajesh Pillai,Procurement Manager,rajesh.pillai@nmdc.com,+91-7532810949,45,107
+CUST0084,Rio Tinto Kennecott - Denver Regional,Mining,USA,Los Angeles,2019-10-13,813,1,Enterprise,Steven Robinson,Site Engineer,steven.robinson@rio.com,+1-3067843621,15,637
+CUST0085,Thiess,Construction,Australia,Sydney,2021-07-29,595,7,Standard,Mason Mitchell,Operations Lead,mason.mitchell@thiess.com,+61-443833963,30,129
+CUST0086,GMR Infrastructure - Mumbai Metro Division,Infrastructure,India,Ahmedabad,2019-10-04,808,1,Enterprise,Naveen Aggarwal,Procurement Manager,naveen.aggarwal@gmr.com,+91-6096136312,30,353
+CUST0087,STRABAG SE,Construction,Germany,Frankfurt,2018-07-21,770,2,Premium,Dieter Wagner,Procurement Manager,dieter.wagner@strabag.com,+49-4431481733,30,677
+CUST0088,Balfour Beatty US - Chicago Division,Construction,USA,Denver,2018-03-15,726,2,Premium,Scott Johnson,Construction Manager,scott.johnson@balfour.com,+1-3223689891,15,506
+CUST0089,Turner Construction - Houston Office,Construction,USA,Salt Lake City,2018-08-03,736,2,Premium,Matthew Williams,Procurement Manager,matthew.williams@turner.com,+1-5551830481,60,520
+CUST0090,Newmont Mining - Mining Services Div,Mining,USA,Seattle,2020-03-18,671,0,Standard,Kenneth Smith,Equipment Manager,kenneth.smith@newmont.com,+1-7782599279,45,245
+CUST0091,Jacobs Engineering - Chicago Division,Construction,USA,Atlanta,2018-10-19,577,1,Standard,Anthony Martin,Site Engineer,anthony.martin@jacobs.com,+1-6156341268,45,664
+CUST0092,John Holland Group - Infrastructure Division,Construction,Australia,Karratha,2018-03-22,671,1,Standard,Xavier Wright,Equipment Manager,xavier.wright@john.com,+61-462730696,15,249
+CUST0093,Whiting-Turner - Northwest Division,Construction,USA,Los Angeles,2019-04-02,681,4,Standard,Jonathan Smith,Procurement Manager,jonathan.smith@whiting-turner.com,+1-6250644256,45,640
+CUST0094,Porr Deutschland - Ost Deutschland,Construction,Germany,Stuttgart,2019-12-20,673,2,Standard,Uwe Braun,Procurement Manager,uwe.braun@porr.com,+49-3707013363,30,604
+CUST0095,Granite Construction - Northwest Division,Construction,USA,Denver,2021-01-03,706,1,Premium,Ryan Taylor,Operations Lead,ryan.taylor@granite.com,+1-3718220409,15,635
+CUST0096,Balfour Beatty US,Construction,USA,Denver,2018-08-02,829,1,Enterprise,Timothy Smith,Deputy Project Manager,timothy.smith@balfour.com,+1-8957504685,15,703
+CUST0097,Coal India Limited - Kolkata Division,Mining,India,Mumbai,2018-08-19,618,2,Standard,Sunil Singh,Equipment Manager,sunil.singh@coal.com,+91-9794657211,45,655
+CUST0098,Clark Construction Group,Construction,USA,Denver,2019-05-10,673,3,Standard,Steven Robinson,Deputy Project Manager,steven.robinson@clark.com,+1-5957321396,30,225
+CUST0099,Larsen & Toubro Construction - Kolkata Division,Construction,India,Bengaluru,2021-01-04,722,3,Premium,Sunil Bansal,Operations Lead,sunil.bansal@larsen.com,+91-7981724643,60,203
+CUST0100,Wacker Chemie AG,Road Works,Germany,Berlin,2021-10-27,743,1,Premium,Thomas Wolf,Senior Site Engineer,thomas.wolf@wacker.com,+49-2654917886,45,356
+CUST0101,Watpac Constructions - Infrastructure Division,Construction,Australia,Adelaide,2019-10-09,555,2,Standard,Kai Campbell,Site Engineer,kai.campbell@watpac.com,+61-497328057,15,462
+CUST0102,Suffolk Construction - Mining Services Div,Mining,USA,Denver,2020-07-13,786,1,Enterprise,Joshua Brown,Senior Site Engineer,joshua.brown@suffolk.com,+1-9550296615,60,204
+CUST0103,Deutsche Bahn Bau - Ost Deutschland,Infrastructure,Germany,Cologne,2020-07-09,714,2,Premium,Juergen Becker,Operations Lead,juergen.becker@deutsche.com,+49-5712119018,15,559
+CUST0104,Probuild Constructions,Construction,Australia,Newcastle,2019-06-24,761,1,Premium,Hunter Walker,Operations Lead,hunter.walker@probuild.com,+61-493893578,30,671
+CUST0105,Tata Projects Ltd,Construction,India,Pune,2018-11-04,767,4,Premium,Karthik Kumar,Deputy Project Manager,karthik.kumar@tata.com,+91-7557888730,30,404
+CUST0106,Rio Tinto Australia - Pilbara Operations,Mining,Australia,Gold Coast,2020-05-08,811,0,Enterprise,Callum Carter,Operations Lead,callum.carter@rio.com,+61-420728758,30,240
+CUST0107,Granite Construction - West Coast Office,Construction,USA,Denver,2018-09-23,850,2,Enterprise,Daniel Harris,Procurement Manager,daniel.harris@granite.com,+1-2051826149,30,610
+CUST0108,Heitkamp Ingenieur - Munich Sued Div,Road Works,Germany,Bremen,2019-11-27,766,3,Premium,Bernd Weber,Equipment Manager,bernd.weber@heitkamp.com,+49-9272460488,30,627
+CUST0109,Jacobs Engineering,Construction,USA,Chicago,2020-11-05,592,4,Standard,Robert Thomas,Deputy Project Manager,robert.thomas@jacobs.com,+1-2963404085,30,713
+CUST0110,Walsh Group,Road Works,USA,Salt Lake City,2020-11-13,763,7,Premium,Benjamin Thompson,Deputy Project Manager,benjamin.thompson@walsh.com,+1-7856447010,15,498
+CUST0111,Newmont Mining - Southeast Region,Mining,USA,Houston,2019-07-02,654,5,Standard,Kenneth White,Senior Site Engineer,kenneth.white@newmont.com,+1-8728934553,30,340
+CUST0112,Punj Lloyd - Bengaluru Projects,Construction,India,Mumbai,2018-08-03,850,1,Enterprise,Ganesh Chowdhury,Project Manager,ganesh.chowdhury@punj.com,+91-7141444834,60,374
+CUST0113,Reliance Infrastructure - Mumbai Metro Division,Infrastructure,India,Mumbai,2020-11-02,703,2,Premium,Rahul Menon,Procurement Manager,rahul.menon@reliance.com,+91-6977475489,30,689
+CUST0114,Ludwig Freytag GmbH - Industrieanlagenbau,Infrastructure,Germany,Cologne,2019-04-28,500,3,Standard,Wolfgang Koch,Senior Site Engineer,wolfgang.koch@ludwig.com,+49-5794928932,15,577
+CUST0115,NCC Limited - Kolkata Division,Construction,India,Delhi,2019-07-10,817,1,Enterprise,Rajesh Desai,Construction Manager,rajesh.desai@ncc.com,+91-9338889804,30,693
+CUST0116,Kroell Bau,Road Works,Germany,Essen,2020-06-26,655,2,Standard,Andreas Schmitt,Construction Manager,andreas.schmitt@kroell.com,+49-6053165948,60,584
+CUST0117,Rio Tinto Kennecott - Infrastructure Group,Mining,USA,Atlanta,2018-11-09,738,3,Premium,Matthew Thomas,Procurement Manager,matthew.thomas@rio.com,+1-4160636035,45,204
+CUST0118,Rio Tinto Australia - Kalgoorlie Branch,Mining,Australia,Brisbane,2020-12-31,633,1,Standard,Declan Campbell,Operations Lead,declan.campbell@rio.com,+61-408799243,45,401
+CUST0119,Max Boegl Group,Infrastructure,Germany,Stuttgart,2019-01-11,703,2,Premium,Werner Hoffmann,Procurement Manager,werner.hoffmann@max.com,+49-3026690440,30,714
+CUST0120,Shapoorji Pallonji Group - Bengaluru Projects,Infrastructure,India,Pune,2019-02-09,636,4,Standard,Amit Nair,Project Manager,amit.nair@shapoorji.com,+91-8034848987,60,516
+CUST0121,K+S Kali GmbH - Rhein-Main Region,Mining,Germany,Munich,2020-04-14,844,1,Enterprise,Rainer Hoffmann,Equipment Manager,rainer.hoffmann@k+s.com,+49-8495636795,45,405
+CUST0122,Afcons Infrastructure - Western Region,Construction,India,Mumbai,2020-11-13,646,5,Standard,Rahul Chowdhury,Procurement Manager,rahul.chowdhury@afcons.com,+91-6895969004,30,391
+CUST0123,Hochtief AG - Bau Sued,Construction,Germany,Cologne,2018-07-17,589,3,Standard,Heinz Lange,Deputy Project Manager,heinz.lange@hochtief.com,+49-7455092839,30,199
+CUST0124,ADCO Constructions - Sydney Regional,Infrastructure,Australia,Perth,2020-06-07,751,1,Premium,Riley Carter,Operations Lead,riley.carter@adco.com,+61-481430545,60,474
+CUST0125,Tata Projects Ltd - Hyderabad Branch,Construction,India,Jamshedpur,2021-04-01,757,3,Premium,Ashok Chauhan,Senior Site Engineer,ashok.chauhan@tata.com,+91-9783220819,15,422
+CUST0126,Mirvac Constructions,Infrastructure,Australia,Kalgoorlie,2021-07-05,850,1,Enterprise,Jesse Walker,Deputy Project Manager,jesse.walker@mirvac.com,+61-458822422,30,425
+CUST0127,Freeport-McMoRan - Southeast Region,Mining,USA,Dallas,2018-01-30,836,1,Enterprise,Eric Smith,Project Manager,eric.smith@freeport-mcmoran.com,+1-9350418560,30,459
+CUST0128,Georgiou Group - Queensland Region,Construction,Australia,Newcastle,2020-02-19,667,6,Standard,Kai Martin,Operations Lead,kai.martin@georgiou.com,+61-426707338,30,351
+CUST0129,Bechtel Corporation - Northwest Division,Construction,USA,Los Angeles,2019-11-29,624,4,Standard,Mark Johnson,Site Engineer,mark.johnson@bechtel.com,+1-6364551216,45,122
+CUST0130,Laing O'Rourke Australia,Construction,Australia,Mount Isa,2021-07-31,701,3,Premium,Jesse White,Senior Site Engineer,jesse.white@laing.com,+61-475874195,15,661
+CUST0131,Diringer & Scheidel - Industrieanlagenbau,Infrastructure,Germany,Essen,2018-05-11,714,3,Premium,Hans Zimmermann,Operations Lead,hans.zimmermann@diringer.com,+49-5264686600,15,531
+CUST0132,Goldbeck GmbH - Munich Sued Div,Construction,Germany,Leipzig,2019-01-17,701,5,Premium,Hans Meyer,Equipment Manager,hans.meyer@goldbeck.com,+49-9368759645,15,501
+CUST0133,Coal India Limited - Delhi NCR Division,Mining,India,Raipur,2019-06-09,658,7,Standard,Arjun Iyer,Equipment Manager,arjun.iyer@coal.com,+91-8807245182,30,678
+CUST0134,ADCO Constructions - Melbourne Division,Construction,Australia,Kalgoorlie,2018-08-18,734,1,Premium,Ethan Brown,Site Engineer,ethan.brown@adco.com,+61-405295236,30,643
+CUST0135,Hindustan Construction Co - Eastern Region,Road Works,India,Hyderabad,2021-02-01,606,0,Standard,Sunil Gupta,Deputy Project Manager,sunil.gupta@hindustan.com,+91-7822284326,30,328
+CUST0136,Fortescue Metals Group,Mining,Australia,Melbourne,2019-11-25,571,5,Standard,Jack Wilson,Operations Lead,jack.wilson@fortescue.com,+61-403412336,45,303
+CUST0137,AECOM - West Coast Office,Construction,USA,Dallas,2021-01-08,801,6,Enterprise,Andrew Harris,Senior Site Engineer,andrew.harris@aecom.com,+1-8471241525,60,618
+CUST0138,Reliance Infrastructure - Kolkata Division,Construction,India,Ahmedabad,2020-12-06,752,6,Premium,Prakash Naidu,Equipment Manager,prakash.naidu@reliance.com,+91-6903349553,15,609
+CUST0139,Freeport-McMoRan - Mining Services Div,Mining,USA,Minneapolis,2019-10-05,726,4,Premium,James Smith,Construction Manager,james.smith@freeport-mcmoran.com,+1-2429780318,30,407
+CUST0140,Implenia Deutschland,Construction,Germany,Dortmund,2018-05-24,699,3,Standard,Thomas Hartmann,Senior Site Engineer,thomas.hartmann@implenia.com,+49-8774618469,45,106
+CUST0141,Multiplex Constructions - Kalgoorlie Branch,Construction,Australia,Brisbane,2019-02-04,722,3,Premium,Mason Taylor,Site Engineer,mason.taylor@multiplex.com,+61-420905527,30,571
+CUST0142,Bilfinger SE - NRW Division,Infrastructure,Germany,Essen,2019-09-05,727,0,Premium,Detlef Hoffmann,Equipment Manager,detlef.hoffmann@bilfinger.com,+49-4535834852,45,266
+CUST0143,Zueblin AG - Hamburg Regional,Infrastructure,Germany,Frankfurt,2019-09-28,673,5,Standard,Klaus Schroeder,Deputy Project Manager,klaus.schroeder@zueblin.com,+49-7980663993,30,418
+CUST0144,Shapoorji Pallonji Group,Construction,India,Chennai,2021-06-10,680,4,Standard,Ravi Saxena,Project Manager,ravi.saxena@shapoorji.com,+91-6064160207,30,318
+CUST0145,Hindustan Construction Co - Kolkata Division,Construction,India,Chennai,2018-08-15,727,0,Premium,Sanjay Pillai,Operations Lead,sanjay.pillai@hindustan.com,+91-9476454427,15,408
+CUST0146,Freeport-McMoRan - Infrastructure Group,Mining,USA,Anchorage,2019-03-29,710,3,Premium,Steven Sanchez,Senior Site Engineer,steven.sanchez@freeport-mcmoran.com,+1-9510690551,60,290
+CUST0147,KEC International - Delhi NCR Division,Construction,India,Nagpur,2019-09-27,753,2,Premium,Anil Naidu,Senior Site Engineer,anil.naidu@kec.com,+91-7212468297,60,197
+CUST0148,Vedanta Mining - Hyderabad Branch,Mining,India,Kolkata,2018-09-10,635,1,Standard,Naveen Krishnan,Operations Lead,naveen.krishnan@vedanta.com,+91-8233026206,60,681
+CUST0149,Kiewit Corporation - Northwest Division,Construction,USA,Denver,2018-06-12,824,3,Enterprise,Daniel Miller,Site Engineer,daniel.miller@kiewit.com,+1-6441485983,30,255
+CUST0150,Bechtel Corporation - Mining Services Div,Mining,USA,Anchorage,2020-10-19,747,0,Premium,Steven Davis,Construction Manager,steven.davis@bechtel.com,+1-8241418951,30,648
+CUST0151,IRCON International - Chennai Division,Infrastructure,India,Bengaluru,2019-06-10,595,8,Standard,Aditya Reddy,Senior Site Engineer,aditya.reddy@ircon.com,+91-9565157685,15,213
+CUST0152,Rio Tinto Kennecott - Rocky Mountain Div,Mining,USA,Los Angeles,2021-07-16,688,0,Standard,Kevin Lee,Construction Manager,kevin.lee@rio.com,+1-2784314188,60,289
+CUST0153,IRCON International - Delhi NCR Division,Infrastructure,India,Raipur,2019-12-21,788,1,Enterprise,Kunal Menon,Site Engineer,kunal.menon@ircon.com,+91-8316951071,30,633
+CUST0154,Punj Lloyd - Delhi NCR Division,Construction,India,Raipur,2018-08-02,819,1,Enterprise,Nikhil Iyer,Project Manager,nikhil.iyer@punj.com,+91-7821133740,30,375
+CUST0155,Afcons Infrastructure - Coal & Minerals Div,Mining,India,Pune,2021-03-29,783,4,Enterprise,Sanjay Rao,Operations Lead,sanjay.rao@afcons.com,+91-9099023544,30,90
+CUST0156,NCC Limited - Bengaluru Projects,Road Works,India,Mumbai,2019-09-14,673,0,Standard,Nikhil Bansal,Senior Site Engineer,nikhil.bansal@ncc.com,+91-6602597967,30,582
+CUST0157,Thyssenkrupp Industrial - Munich Sued Div,Construction,Germany,Cologne,2020-01-15,757,4,Premium,Peter Zimmermann,Deputy Project Manager,peter.zimmermann@thyssenkrupp.com,+49-1302931075,30,233
+CUST0158,Lendlease Australia - Melbourne Division,Construction,Australia,Newcastle,2021-12-10,775,2,Premium,Oliver Nelson,Procurement Manager,oliver.nelson@lendlease.com,+61-485464025,15,623
+CUST0159,GMR Infrastructure,Infrastructure,India,Kolkata,2019-07-19,693,6,Standard,Nikhil Rao,Deputy Project Manager,nikhil.rao@gmr.com,+91-7283431638,15,644
+CUST0160,Goldbeck GmbH - Ost Deutschland,Infrastructure,Germany,Hamburg,2018-06-28,616,5,Standard,Wolfgang Richter,Procurement Manager,wolfgang.richter@goldbeck.com,+49-7298679849,60,262
+CUST0161,GMR Infrastructure - Eastern Region,Infrastructure,India,Nagpur,2019-07-31,729,3,Premium,Manoj Bhat,Operations Lead,manoj.bhat@gmr.com,+91-7811076569,15,197
+CUST0162,K+S Kali GmbH - Ost Deutschland,Mining,Germany,Stuttgart,2021-07-15,671,3,Standard,Uwe Hofmann,Procurement Manager,uwe.hofmann@k+s.com,+49-1055517225,45,338
+CUST0163,Granite Construction - Denver Regional,Construction,USA,Dallas,2020-08-31,756,2,Premium,Timothy Brown,Senior Site Engineer,timothy.brown@granite.com,+1-7844165546,60,521
+CUST0164,Bilfinger SE - Tiefbau Division,Infrastructure,Germany,Duesseldorf,2018-06-25,616,4,Standard,Rolf Neumann,Site Engineer,rolf.neumann@bilfinger.com,+49-4900179544,30,670
+CUST0165,Adani Ports & SEZ - Western Region,Infrastructure,India,Hyderabad,2019-12-29,754,5,Premium,Rajesh Naidu,Operations Lead,rajesh.naidu@adani.com,+91-9514865652,30,450
+CUST0166,Newcrest Mining - Sydney Regional,Mining,Australia,Brisbane,2020-10-30,644,1,Standard,Hunter Chen,Procurement Manager,hunter.chen@newcrest.com,+61-474957616,60,419
+CUST0167,Jaiprakash Associates,Construction,India,Pune,2020-04-15,693,1,Standard,Nikhil Pillai,Deputy Project Manager,nikhil.pillai@jaiprakash.com,+91-6435072294,15,505
+CUST0168,Jaiprakash Associates - Kolkata Division,Infrastructure,India,Pune,2021-11-30,693,4,Standard,Harish Nair,Project Manager,harish.nair@jaiprakash.com,+91-6478805564,30,685
+CUST0169,NCC Limited - Western Region,Construction,India,Delhi,2018-08-26,706,2,Premium,Anil Gupta,Senior Site Engineer,anil.gupta@ncc.com,+91-9928594978,45,359
+CUST0170,Afcons Infrastructure - Hyderabad Branch,Construction,India,Jamshedpur,2021-10-10,578,5,Standard,Anil Yadav,Deputy Project Manager,anil.yadav@afcons.com,+91-7056147898,60,248
+CUST0171,K+S Kali GmbH - NRW Division,Mining,Germany,Cologne,2019-07-15,730,2,Premium,Ralf Becker,Deputy Project Manager,ralf.becker@k+s.com,+49-1927575908,15,393
+CUST0172,AECOM - Infrastructure Group,Road Works,USA,Los Angeles,2018-09-30,662,7,Standard,Daniel Jackson,Project Manager,daniel.jackson@aecom.com,+1-8011308538,60,486
+CUST0173,IRCON International - Bengaluru Projects,Infrastructure,India,Delhi,2018-02-12,790,2,Enterprise,Naveen Pillai,Equipment Manager,naveen.pillai@ircon.com,+91-6577642187,30,342
+CUST0174,Depenbrock Bau - Industrieanlagenbau,Construction,Germany,Essen,2020-09-22,632,5,Standard,Heinz Koch,Senior Site Engineer,heinz.koch@depenbrock.com,+49-8387800067,60,319
+CUST0175,AECOM - Northwest Division,Construction,USA,Los Angeles,2018-05-11,701,5,Premium,Chris Smith,Operations Lead,chris.smith@aecom.com,+1-6542124462,30,578
+CUST0176,BHP Mining Operations - Kalgoorlie Branch,Mining,Australia,Port Hedland,2020-08-03,803,1,Enterprise,Noah Mitchell,Procurement Manager,noah.mitchell@bhp.com,+61-497678361,15,702
+CUST0177,Skanska USA,Construction,USA,Seattle,2020-09-12,613,5,Standard,Ryan Taylor,Procurement Manager,ryan.taylor@skanska.com,+1-8742486046,60,506
+CUST0178,NCC Limited,Construction,India,Nagpur,2019-12-30,704,6,Premium,Rajesh Bansal,Site Engineer,rajesh.bansal@ncc.com,+91-8523068547,15,162
+CUST0179,Suffolk Construction - Chicago Division,Construction,USA,Denver,2021-11-02,710,1,Premium,Matthew Sanchez,Project Manager,matthew.sanchez@suffolk.com,+1-9084149173,45,212
+CUST0180,Jacobs Engineering - Rocky Mountain Div,Construction,USA,Salt Lake City,2019-08-04,724,2,Premium,Kevin Moore,Project Manager,kevin.moore@jacobs.com,+1-5775553439,45,182
+CUST0181,Afcons Infrastructure - Eastern Region,Road Works,India,Jamshedpur,2021-06-23,717,0,Premium,Pradeep Singh,Equipment Manager,pradeep.singh@afcons.com,+91-8249992815,30,110
+CUST0182,Downer Group,Construction,Australia,Sydney,2019-01-14,648,1,Standard,Blake Brown,Project Manager,blake.brown@downer.com,+61-401688255,15,424
+CUST0183,Bechtel Corporation,Construction,USA,Phoenix,2018-06-08,521,7,Standard,Steven Williams,Project Manager,steven.williams@bechtel.com,+1-4666626639,30,638
+CUST0184,Walsh Group - Mining Services Div,Mining,USA,Los Angeles,2021-03-03,629,3,Standard,Eric Walker,Project Manager,eric.walker@walsh.com,+1-9792623182,45,121
+CUST0185,Wolff & Mueller,Construction,Germany,Dortmund,2020-12-28,702,5,Premium,Michael Fischer,Equipment Manager,michael.fischer@wolff.com,+49-5723268162,30,707
+CUST0186,Watpac Constructions,Infrastructure,Australia,Newcastle,2020-08-15,683,5,Standard,William Nelson,Senior Site Engineer,william.nelson@watpac.com,+61-449082552,30,335
+CUST0187,Probuild Constructions - Northern Territory Div,Construction,Australia,Kalgoorlie,2021-06-29,692,3,Standard,Liam Campbell,Senior Site Engineer,liam.campbell@probuild.com,+61-489055153,30,629
+CUST0188,Mortenson Construction - Infrastructure Group,Construction,USA,Anchorage,2020-11-22,685,8,Standard,Kevin Thomas,Project Manager,kevin.thomas@mortenson.com,+1-7553217262,45,503
+CUST0189,Fluor Corporation - Mining Services Div,Mining,USA,Pittsburgh,2019-10-28,657,2,Standard,David Thomas,Operations Lead,david.thomas@fluor.com,+1-3313820112,30,146
+CUST0190,Kiewit Corporation - Denver Regional,Construction,USA,Atlanta,2020-03-30,628,5,Standard,Jason Robinson,Project Manager,jason.robinson@kiewit.com,+1-5175084884,60,118
+CUST0191,NMDC Limited - Eastern Region,Mining,India,Nagpur,2019-02-25,663,7,Standard,Aditya Sharma,Construction Manager,aditya.sharma@nmdc.com,+91-8250496030,30,610
+CUST0192,Kiewit Corporation,Construction,USA,Dallas,2020-11-11,621,3,Standard,Chris Wilson,Equipment Manager,chris.wilson@kiewit.com,+1-4127190829,60,717
+CUST0193,Leighton Contractors,Construction,Australia,Perth,2019-12-02,710,0,Premium,Hunter Taylor,Construction Manager,hunter.taylor@leighton.com,+61-453949988,15,249
+CUST0194,Coal India Limited - Hyderabad Branch,Mining,India,Bengaluru,2018-05-04,790,2,Enterprise,Sanjay Bhat,Procurement Manager,sanjay.bhat@coal.com,+91-9163817070,30,509
+CUST0195,DPR Construction - Northwest Division,Construction,USA,Atlanta,2018-02-19,828,1,Enterprise,Jonathan Lee,Project Manager,jonathan.lee@dpr.com,+1-2957668578,15,208
+CUST0196,Jaiprakash Associates - Coal & Minerals Div,Mining,India,Kolkata,2018-02-08,738,1,Premium,Naveen Nair,Procurement Manager,naveen.nair@jaiprakash.com,+91-7710275481,30,639
+CUST0197,IL&FS Engineering - Mumbai Metro Division,Infrastructure,India,Raipur,2019-03-19,753,4,Premium,Ravi Gupta,Senior Site Engineer,ravi.gupta@ilfs.com,+91-6862378631,30,620
+CUST0198,Probuild Constructions - Perth Mining Div,Mining,Australia,Brisbane,2021-07-14,754,4,Premium,Mason Jones,Construction Manager,mason.jones@probuild.com,+61-493095669,15,337
+CUST0199,Barrick Gold USA - Chicago Division,Mining,USA,Atlanta,2019-03-07,783,2,Enterprise,Ryan Sanchez,Site Engineer,ryan.sanchez@barrick.com,+1-9588306040,30,305
+CUST0200,Bilfinger SE - Munich Sued Div,Construction,Germany,Leipzig,2020-11-17,846,2,Enterprise,Andreas Meyer,Equipment Manager,andreas.meyer@bilfinger.com,+49-5537324389,45,246
