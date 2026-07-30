@@ -7,6 +7,7 @@ import {
 import { TrendingUp, DollarSign, Activity, CalendarClock, Loader2 } from 'lucide-react';
 import { fetchTrends } from '@/services/api';
 import { PageContainer, PageHeader } from '@/components/ui/Page';
+import { CountryForecastPanel } from '@/components/mission/CountryForecastPanel';
 
 const tooltipStyle = {
   backgroundColor: '#1B1D20', border: '1px solid rgba(255,255,255,0.08)',
@@ -34,6 +35,10 @@ export function ForecastPage() {
   return (
     <PageContainer title="Forecasting">
       <PageHeader title="Forecasting" subtitle="Predictive analytics for demand, revenue, utilization, and rentals." />
+      <div className="mb-6">
+        <CountryForecastPanel />
+      </div>
+
       {loading ? (
         <div className="flex justify-center p-12"><Loader2 className="h-8 w-8 animate-spin text-cat-yellow" /></div>
       ) : (

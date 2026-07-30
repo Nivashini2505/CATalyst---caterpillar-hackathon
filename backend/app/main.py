@@ -25,7 +25,19 @@ async def lifespan(app: FastAPI):
     print("*" * 50)
     print("SUCCESS: Connected to Local PostgreSQL Database!")
     print("*" * 50)
-    
+
+    # Warm the ML models + serving snapshot so the first dashboard request
+    # is instant during the demo. Never let this block/kill startup.
+    try:
+        from app.ml import inference as ml
+        if ml.is_ready():
+            ml.fleet_health_overview()   # caches health/risk for all assets
+            print("SUCCESS: ML models loaded and fleet health warmed.")
+        else:
+            print("WARNING: ML artifacts not found - endpoints will use fallbacks.")
+    except Exception as e:
+        print(f"WARNING: ML warmup skipped ({e}). API still starts.")
+
     yield
     # Shutdown
     await close_mongo_connection()

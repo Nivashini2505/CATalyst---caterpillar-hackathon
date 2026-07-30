@@ -7,8 +7,9 @@ import { Badge, priorityTone } from '@/components/ui/Badge';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 import { PageContainer, PageHeader } from '@/components/ui/Page';
 import { RecommendationCard } from '@/components/mission/RecommendationCard';
+import { AnomalyMonitor } from '@/components/mission/AnomalyMonitor';
 
-const categories = ['All', 'Relocation', 'Maintenance', 'Rental', 'Utilization'];
+const categories = ['All', 'Security', 'Maintenance', 'Utilization', 'Relocation', 'Rental'];
 const priorities = ['All', 'high', 'medium', 'low'];
 
 export function DecisionCenterPage() {
@@ -84,6 +85,11 @@ export function DecisionCenterPage() {
           tone="crit"
           delay={0.18}
         />
+      </div>
+
+      {/* Live anomaly detection feed */}
+      <div className="mb-6">
+        <AnomalyMonitor limit={12} />
       </div>
 
       {/* Filters */}

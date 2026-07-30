@@ -56,3 +56,43 @@ export const askCopilot = async (query: string) => {
   const response = await api.post('/ai/copilot', { query });
   return response.data.reply;
 };
+
+// ---- ML-backed endpoints ----
+
+export const fetchAnomalies = async (limit = 25, minSeverity?: string) => {
+  const params: Record<string, any> = { limit };
+  if (minSeverity) params.min_severity = minSeverity;
+  const response = await api.get('/ai/anomalies', { params });
+  return response.data;
+};
+
+export const fetchAnomalySummary = async () => {
+  const response = await api.get('/ai/anomalies/summary');
+  return response.data;
+};
+
+export const fetchModelMetrics = async () => {
+  const response = await api.get('/ai/model-metrics');
+  return response.data;
+};
+
+export const fetchForecastCountries = async () => {
+  const response = await api.get('/analytics/forecast/countries');
+  return response.data.countries as string[];
+};
+
+export const fetchForecastByCountry = async (country: string) => {
+  const response = await api.get(`/analytics/forecast/country/${country}`);
+  return response.data;
+};
+
+export const fetchForecastComparison = async (machineType?: string) => {
+  const params = machineType ? { machine_type: machineType } : {};
+  const response = await api.get('/analytics/forecast/comparison', { params });
+  return response.data;
+};
+
+export const fetchMaintenanceForecast = async (assetId: string) => {
+  const response = await api.get(`/equipment/${assetId}/maintenance-forecast`);
+  return response.data;
+};

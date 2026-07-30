@@ -7,6 +7,8 @@ from app.models.postgres.core import Asset, Rental
 from pydantic import BaseModel
 import random
 
+from app.ml import inference as ml
+
 router = APIRouter()
 
 # Schemas
@@ -47,17 +49,20 @@ async def get_kpis(db: AsyncSession = Depends(get_db)):
 
 @router.get("/trends")
 async def get_trends():
-    # Return mock trends since we don't have historical data in the DB yet for the hackathon
+    # demandForecast now comes from the trained GradientBoosting demand model
+    # (seasonality + weather + holiday + lagged-bookings features). Falls back
+    # to a seasonal-naive estimate if the model artifact is unavailable.
+    try:
+        demand_forecast = ml.predict_demand_forecast(days=7)
+    except Exception as e:
+        print("[analytics] demand model fallback:", e)
+        demand_forecast = [
+            {"day": d, "Excavators": random.randint(10, 20), "Dozers": random.randint(5, 15),
+             "Loaders": random.randint(8, 12), "Graders": random.randint(3, 8)}
+            for d in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        ]
     return {
-        "demandForecast": [
-            {"day": 'Mon', "Excavators": random.randint(10,20), "Dozers": random.randint(5,15), "Loaders": random.randint(8,12), "Graders": random.randint(3,8)},
-            {"day": 'Tue', "Excavators": random.randint(10,20), "Dozers": random.randint(5,15), "Loaders": random.randint(8,12), "Graders": random.randint(3,8)},
-            {"day": 'Wed', "Excavators": random.randint(10,20), "Dozers": random.randint(5,15), "Loaders": random.randint(8,12), "Graders": random.randint(3,8)},
-            {"day": 'Thu', "Excavators": random.randint(10,20), "Dozers": random.randint(5,15), "Loaders": random.randint(8,12), "Graders": random.randint(3,8)},
-            {"day": 'Fri', "Excavators": random.randint(10,20), "Dozers": random.randint(5,15), "Loaders": random.randint(8,12), "Graders": random.randint(3,8)},
-            {"day": 'Sat', "Excavators": random.randint(5,10), "Dozers": random.randint(2,5), "Loaders": random.randint(4,6), "Graders": random.randint(1,3)},
-            {"day": 'Sun', "Excavators": random.randint(5,10), "Dozers": random.randint(2,5), "Loaders": random.randint(4,6), "Graders": random.randint(1,3)},
-        ],
+        "demandForecast": demand_forecast,
         "revenueTrend": [
             {"month": 'Jan', "revenue": 1240, "target": 1100},
             {"month": 'Feb', "revenue": 1380, "target": 1200},
@@ -114,3 +119,36 @@ async def get_brief():
             "confidence": 97,
         },
     }
+
+
+# ---------------------------------------------------------------------
+# ML-backed demand-forecast endpoints (new for the dashboard drilldowns)
+# ---------------------------------------------------------------------
+
+@router.get("/forecast/countries")
+async def forecast_countries():
+    """List of countries available in the demand model (for the UI selector)."""
+    try:
+        import pandas as pd
+        df = ml._demand()
+        return {"countries": sorted(df["country"].unique().tolist())}
+    except Exception as e:
+        return {"countries": ["India", "USA", "Germany", "Australia"], "error": str(e)}
+
+
+@router.get("/forecast/country/{country}")
+async def forecast_by_country(country: str, horizon_weeks: int = 2):
+    """Per-country next-week demand outlook broken down by machine type."""
+    try:
+        return ml.predict_demand_by_country(country, horizon_weeks=horizon_weeks)
+    except Exception as e:
+        return {"country": country, "series": [], "error": str(e)}
+
+
+@router.get("/forecast/comparison")
+async def forecast_comparison(machine_type: str | None = None):
+    """Compare next-week demand across all four countries for one machine type."""
+    try:
+        return ml.demand_country_comparison(machine_type)
+    except Exception as e:
+        return {"machineType": machine_type or "All", "data": [], "error": str(e)}

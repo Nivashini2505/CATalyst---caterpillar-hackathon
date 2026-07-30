@@ -14,7 +14,7 @@ export interface Recommendation {
   savings: number;
   confidence: number;
   priority: 'high' | 'medium' | 'low';
-  category: 'Relocation' | 'Maintenance' | 'Rental' | 'Utilization';
+  category: 'Relocation' | 'Maintenance' | 'Rental' | 'Utilization' | 'Security' | string;
 }
 
 export function RecommendationCard({

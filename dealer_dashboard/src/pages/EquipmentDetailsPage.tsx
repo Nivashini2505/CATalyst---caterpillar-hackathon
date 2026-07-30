@@ -8,7 +8,7 @@ import {
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
-import { fetchEquipment, fetchRecommendations } from '@/services/api';
+import { fetchEquipment, fetchRecommendations, fetchMaintenanceForecast } from '@/services/api';
 import { Badge, statusTone } from '@/components/ui/Badge';
 import { RingGauge } from '@/components/ui/RingGauge';
 import { Button } from '@/components/ui/Button';
@@ -30,7 +30,7 @@ const healthTrend = Array.from({ length: 12 }, (_, i) => ({
   health: Math.max(50, 96 - i * 1.5 - Math.random() * 4),
 }));
 
-const maintenanceTimeline = [
+const fallbackTimeline = [
   { date: 'Jul 28', event: 'Hydraulic inspection', status: 'done' },
   { date: 'Jul 15', event: 'Oil change', status: 'done' },
   { date: 'Jul 02', event: 'Track adjustment', status: 'done' },
@@ -42,6 +42,7 @@ export function EquipmentDetailsPage() {
   const navigate = useNavigate();
   const [eq, setEq] = useState<any>(null);
   const [rec, setRec] = useState<any>(null);
+  const [maintenance, setMaintenance] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -50,6 +51,9 @@ export function EquipmentDetailsPage() {
         const [eqData, recData] = await Promise.all([fetchEquipment(), fetchRecommendations()]);
         setEq(eqData.find((e: any) => e.id === id) || null);
         setRec(recData.find((r: any) => r.equipmentId === id) || null);
+        if (id) {
+          fetchMaintenanceForecast(id).then(setMaintenance).catch(() => setMaintenance(null));
+        }
       } catch (err) {
         console.error(err);
       } finally {
@@ -58,6 +62,8 @@ export function EquipmentDetailsPage() {
     };
     load();
   }, [id]);
+
+  const maintenanceTimeline = maintenance?.timeline || fallbackTimeline;
 
   if (loading) {
     return (
@@ -189,17 +195,42 @@ export function EquipmentDetailsPage() {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="card p-5">
-              <div className="mb-3 flex items-center gap-2.5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-info/10 text-info">
-                  <Wrench className="h-5 w-5" />
+              <div className="mb-3 flex items-center justify-between gap-2.5">
+                <div className="flex items-center gap-2.5">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-info/10 text-info">
+                    <Wrench className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-sm font-semibold text-white">Predictive Maintenance</h3>
                 </div>
-                <h3 className="text-sm font-semibold text-white">Maintenance Timeline</h3>
+                {maintenance?.prediction && (
+                  <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold ${
+                    maintenance.prediction.maintenanceWithin30d
+                      ? 'bg-crit/15 text-crit' : 'bg-ok/15 text-ok'
+                  }`}>
+                    {maintenance.prediction.maintenanceWithin30d ? 'Service due <30d' : 'Healthy'}
+                  </span>
+                )}
               </div>
+              {maintenance?.prediction && (
+                <div className="mb-3 rounded-lg border border-info/15 bg-info/[0.04] p-2.5">
+                  <p className="text-xs leading-relaxed text-ink-100">{maintenance.prediction.reason}</p>
+                  <div className="mt-1.5 flex items-center gap-3 text-[10px] text-ink-200">
+                    <span>Life used <span className="font-semibold text-ink-50">{maintenance.prediction.lifeUsedPct}%</span></span>
+                    <span>Risk <span className="font-semibold text-ink-50">{maintenance.prediction.riskScore}%</span></span>
+                    <span>Vibration <span className="font-semibold text-ink-50">{maintenance.prediction.vibration}g</span></span>
+                  </div>
+                </div>
+              )}
               <div className="space-y-3">
-                {maintenanceTimeline.map((m) => (
+                {maintenanceTimeline.map((m: any) => (
                   <div key={m.date + m.event} className="flex items-center gap-3">
-                    <div className={`h-2.5 w-2.5 rounded-full ${m.status === 'done' ? 'bg-ok' : 'bg-warn'}`} />
+                    <div className={`h-2.5 w-2.5 rounded-full ${
+                      m.status === 'done' ? 'bg-ok' : m.status === 'predicted' ? 'bg-cat-yellow ring-4 ring-cat-yellow/20' : 'bg-warn'
+                    }`} />
                     <div className="flex-1 text-sm text-ink-50">{m.event}</div>
+                    {m.status === 'predicted' && m.confidence != null && (
+                      <div className="text-[10px] font-medium text-cat-yellow">{m.confidence}%</div>
+                    )}
                     <div className="text-xs text-ink-200">{m.date}</div>
                   </div>
                 ))}
