@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from sqlalchemy.future import select
 from app.db.postgres import AsyncSessionLocal
-from app.models.postgres.core import Asset, Site, Assignment
+from app.models.postgres.core import Asset, Site
 from pydantic import BaseModel
 import hashlib
 
@@ -52,7 +52,6 @@ def _from_snapshot():
     only has a handful of assets, so for the dashboard we use the richer
     simulated fleet the models were trained on.
     """
-    import pandas as pd
     machines = ml._machines()
     latest = ml._telemetry_latest().set_index("asset_id")
     sites = ml._sites().set_index("site_id")

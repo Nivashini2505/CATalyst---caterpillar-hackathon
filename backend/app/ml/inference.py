@@ -187,7 +187,6 @@ def _forecast_type_week(country: str, machine_type: str, horizon_weeks: int = 2)
         return [0] * horizon_weeks
 
     bundle = models["demand"]
-    last = hist.tail(6)
     last_week = hist["week_start"].max()
     preds = []
     recent_bookings = list(hist["bookings"].tail(6))
@@ -368,15 +367,20 @@ def _rule_reason(row) -> tuple[str, str] | None:
 
 def detect_anomalies(limit: int = 25, min_severity: str | None = None):
     """
-    Scan recent telemetry, run the hybrid model + rule layer, and return a
-    ranked list of anomaly events with explanations. This is what powers the
-    Decision Center recommendation cards.
+    Evaluate each asset's CURRENT telemetry (latest row per asset) with the
+    hybrid model + rule layer, and return a ranked list of active anomaly
+    events with explanations. This powers the Decision Center cards.
+
+    We deliberately score the *latest* state per asset - not the whole 45-day
+    history - so the feed reflects assets that are anomalous RIGHT NOW (~7-8%
+    of the fleet), rather than every asset that had a single blip in the last
+    six weeks (which would flag ~75% of the fleet and read as false positives).
     """
     models = _models()
-    recent = _telemetry_recent()
+    latest = _telemetry_latest()
     machines = _machines().set_index("asset_id")
 
-    d = _prep_anomaly_features(recent)
+    d = _prep_anomaly_features(latest)
 
     bundle = models["anomaly"]
     if bundle is not None:
@@ -617,7 +621,6 @@ def predict_maintenance(asset_id: str):
 
 def maintenance_timeline(asset_id: str):
     """Past + predicted-next service events for the Equipment Details page."""
-    machines = _machines().set_index("asset_id")
     pred = predict_maintenance(asset_id)
     today = _telemetry_latest()["date"].max()
     if pd.isna(today):

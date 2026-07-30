@@ -116,7 +116,6 @@ async def get_brief():
 async def forecast_countries():
     """List of countries available in the demand model (for the UI selector)."""
     try:
-        import pandas as pd
         df = ml._demand()
         return {"countries": sorted(df["country"].unique().tolist())}
     except Exception as e:
