@@ -111,14 +111,19 @@ export function FleetPage() {
         </div>
       ) : (
         <>
-          {/* Card grid view */}
-          <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {/* Card grid view - fixed-height, scrolls internally so the page
+              stays a compact length regardless of fleet size. */}
+          <div className="mb-3 flex items-center justify-between">
+            <span className="text-xs text-ink-200">{filtered.length} machines</span>
+          </div>
+          <div className="mb-6 max-h-[560px] overflow-y-auto scrollbar-thin rounded-xl pr-1">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {filtered.map((eq, i) => (
               <motion.button
                 key={eq.id}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.04 }}
+                transition={{ delay: Math.min(i * 0.03, 0.5) }}
                 whileHover={{ y: -3 }}
                 onClick={() => navigate(`/equipment/${eq.id}`)}
                 className="card card-hover group overflow-hidden text-left"
@@ -156,12 +161,13 @@ export function FleetPage() {
               </motion.button>
             ))}
           </div>
+          </div>
 
-          {/* Table view */}
+          {/* Table view - fixed-height, scrolls internally with a sticky header */}
           <div className="card overflow-hidden">
-            <div className="scrollbar-thin overflow-x-auto">
+            <div className="scrollbar-thin max-h-[560px] overflow-auto">
               <table className="w-full min-w-[760px] text-left">
-                <thead>
+                <thead className="sticky top-0 z-10 bg-ink-600">
                   <tr className="border-b border-white/[0.04] text-[10px] uppercase tracking-wider text-ink-200">
                     <th className="px-5 py-3">
                       <SortBtn label="Equipment" active={sortKey === 'name'} asc={sortAsc} onClick={() => toggleSort('name')} />

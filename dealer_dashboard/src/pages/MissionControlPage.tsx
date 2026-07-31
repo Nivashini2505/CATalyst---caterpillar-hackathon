@@ -3,7 +3,6 @@ import { PageContainer } from '@/components/ui/Page';
 import { ExecutiveBrief } from '@/components/mission/ExecutiveBrief';
 import { KPICard } from '@/components/mission/KPICard';
 import { DecisionCenterSection } from '@/components/mission/RecommendationCard';
-import { FleetStatusTable } from '@/components/mission/FleetStatusTable';
 import { ActivityTimeline } from '@/components/mission/ActivityTimeline';
 import { DemandForecastChart } from '@/components/mission/DemandForecastChart';
 import { fetchKPIs, fetchRecommendations, fetchBrief } from '@/services/api';
@@ -52,16 +51,17 @@ export function MissionControlPage() {
 
         <DecisionCenterSection recs={recs} limit={3} />
 
+        {/* Full fleet listing lives on the Fleet Intelligence page. The main
+            dashboard features the demand forecast + live activity instead, so
+            it stays a fixed, scannable length. */}
         <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
           <div className="xl:col-span-2">
-            <FleetStatusTable />
+            <DemandForecastChart />
           </div>
           <div className="xl:col-span-1">
             <ActivityTimeline />
           </div>
         </div>
-
-        <DemandForecastChart />
       </div>
     </PageContainer>
   );

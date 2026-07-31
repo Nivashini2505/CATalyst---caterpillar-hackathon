@@ -45,6 +45,17 @@ _UI_CATEGORY = {
 _STATUS_MAP = {"rented": "working", "available": "idle", "maintenance": "maintenance", "transit": "transit"}
 
 
+def _image_for(equipment_type: str) -> str:
+    """
+    A reliable, labelled equipment image. machines.csv carries a placeholder
+    domain (images.catrental.com) that does not resolve, so we generate a
+    clean CAT-themed card labelled with the equipment type instead. This
+    always loads and clearly communicates what the machine is.
+    """
+    label = (equipment_type or "Equipment").replace(" ", "+")
+    return f"https://placehold.co/600x400/1a1d21/ffcd11.png?text={label}"
+
+
 def _from_snapshot():
     """
     Serve the full 550-asset fleet from the ML serving snapshot, enriched with
@@ -81,7 +92,7 @@ def _from_snapshot():
             name=m["asset_name"],
             model=m["model"],
             category=_UI_CATEGORY.get(m["equipment_type"], "Excavator"),
-            image=m.get("image_url") or "https://images.unsplash.com/photo-1581094288338-2314dddb7a14?w=800&q=80",
+            image=_image_for(m["equipment_type"]),
             site=site_name,
             operator=operator,
             health=int(hp["health"]),
@@ -136,7 +147,7 @@ async def get_all_equipment():
                 eq = EquipmentUIResponse(
                     id=asset.asset_id, name=asset.asset_name, model=asset.model or "Unknown",
                     category=asset.equipment_type or "Excavator",
-                    image=asset.image_url or "https://images.unsplash.com/photo-1581094288338-2314dddb7a14?w=800&q=80",
+                    image=_image_for(asset.equipment_type),
                     site=site_name, operator="Unassigned", health=health,
                     engineHours=int(asset.total_engine_hours or 0),
                     idleHours=0 if ui_status == "working" else _stable_int(asset.asset_id + "i", 0, 20),

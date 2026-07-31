@@ -8,6 +8,15 @@ interface Msg {
   text: string;
 }
 
+// The copilot answers these fleet questions. Kept always-visible in the panel
+// so the user can always pick a prompt the assistant can respond to.
+const SUGGESTED_PROMPTS = [
+  'Which assets are wasting money?',
+  'Recommend relocations.',
+  "Summarize today's fleet.",
+  'Which rentals expire tomorrow?',
+];
+
 export function FloatingCopilot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([
@@ -119,30 +128,26 @@ export function FloatingCopilot() {
               )}
             </div>
 
-            {messages.length <= 1 && (
-              <div className="px-4 pb-2">
-                <div className="mb-2 text-[10px] font-medium uppercase tracking-wider text-ink-200">
-                  Suggested prompts
-                </div>
-                <div className="grid grid-cols-1 gap-1.5">
-                  {[
-                    'Which assets are wasting money?',
-                    'Recommend relocations.',
-                    "Summarize today's fleet.",
-                    'Which rentals expire tomorrow?',
-                  ].map((s) => (
-                    <button
-                      key={s}
-                      onClick={() => send(s)}
-                      className="group flex items-center justify-between rounded-lg border border-white/[0.06] bg-ink-600/50 px-3 py-2 text-left text-xs text-ink-100 transition-colors hover:border-cat-yellow/30 hover:bg-ink-500/50"
-                    >
-                      {s}
-                      <ArrowUpRight className="h-3.5 w-3.5 text-ink-200 transition-colors group-hover:text-cat-yellow" />
-                    </button>
-                  ))}
-                </div>
+            {/* Suggested prompts - always visible so the user always has a
+                valid question to click, even after several replies. */}
+            <div className="border-t border-white/[0.06] px-3 pt-2.5">
+              <div className="mb-1.5 flex items-center gap-1 text-[10px] font-medium uppercase tracking-wider text-ink-200">
+                <Sparkles className="h-3 w-3 text-cat-yellow" /> Try asking
               </div>
-            )}
+              <div className="scrollbar-thin flex gap-1.5 overflow-x-auto pb-1">
+                {SUGGESTED_PROMPTS.map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => send(s)}
+                    disabled={typing}
+                    className="group flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full border border-white/[0.06] bg-ink-600/50 px-3 py-1.5 text-[11px] text-ink-100 transition-colors hover:border-cat-yellow/30 hover:bg-ink-500/50 disabled:opacity-40"
+                  >
+                    {s}
+                    <ArrowUpRight className="h-3 w-3 text-ink-200 transition-colors group-hover:text-cat-yellow" />
+                  </button>
+                ))}
+              </div>
+            </div>
 
             <div className="border-t border-white/[0.06] p-3">
               <form
