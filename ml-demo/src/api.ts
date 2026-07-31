@@ -63,3 +63,7 @@ export const getMaintenanceForecast = (assetId: string) =>
 
 // ---------- Model metrics (confidence / performance) ----------
 export const getModelMetrics = () => api.get('/ai/model-metrics').then((r) => r.data);
+
+// ---------- CAT Copilot (live model-backed Q&A) ----------
+export const askCopilot = (query: string) =>
+  api.post('/ai/copilot', { query }).then((r) => r.data.reply as string);

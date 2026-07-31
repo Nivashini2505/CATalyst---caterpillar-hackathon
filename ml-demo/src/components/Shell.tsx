@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Truck, TrendingUp, ShieldAlert, Wrench, ArrowLeft } from 'lucide-react';
+import { Copilot } from '@/components/Copilot';
 
 const NAV = [
   { to: '/demand', label: 'Demand Forecasting', icon: TrendingUp },
@@ -60,6 +61,9 @@ export function Shell({ children }: { children: ReactNode }) {
         CAT-alyst ML demo · Demand Forecasting · Anomaly Detection · Predictive Maintenance ·
         predictions served live from the trained models
       </footer>
+
+      {/* Floating CAT Copilot — available on every page */}
+      <Copilot />
     </div>
   );
 }
