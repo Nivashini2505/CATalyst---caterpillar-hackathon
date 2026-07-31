@@ -37,7 +37,7 @@ export function DecisionCenterPage() {
       recommendations.filter(
         (r) => (cat === 'All' || r.category === cat) && (pri === 'All' || r.priority === pri)
       ),
-    [cat, pri]
+    [recommendations, cat, pri]
   );
 
   const totalSavings = recommendations.reduce((s, r) => s + r.savings, 0);

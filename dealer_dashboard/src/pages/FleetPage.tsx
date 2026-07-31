@@ -53,7 +53,7 @@ export function FleetPage() {
       return v;
     });
     return r;
-  }, [query, category, sortKey, sortAsc]);
+  }, [equipment, query, category, sortKey, sortAsc]);
 
   const toggleSort = (k: SortKey) => {
     if (sortKey === k) setSortAsc(!sortAsc);
