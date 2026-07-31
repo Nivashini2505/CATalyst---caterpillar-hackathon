@@ -8,7 +8,6 @@ import { SitesPage } from '@/pages/SitesPage';
 import { WorkforcePage } from '@/pages/WorkforcePage';
 import { DecisionCenterPage } from '@/pages/DecisionCenterPage';
 import { ForecastPage } from '@/pages/ForecastPage';
-import { ReportsPage } from '@/pages/ReportsPage';
 import { CopilotPage } from '@/pages/CopilotPage';
 import { SettingsPage } from '@/pages/SettingsPage';
 
@@ -25,7 +24,6 @@ function App() {
           <Route path="/workforce" element={<WorkforcePage />} />
           <Route path="/decisions" element={<DecisionCenterPage />} />
           <Route path="/forecast" element={<ForecastPage />} />
-          <Route path="/reports" element={<ReportsPage />} />
           <Route path="/copilot" element={<CopilotPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Route>

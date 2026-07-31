@@ -92,16 +92,6 @@ async def get_trends():
     }
 
 
-@router.get("/reports")
-async def get_reports():
-    """Real report summary figures + detailed tables for the Reports page."""
-    try:
-        return ml.reports_summary()
-    except Exception as e:
-        print("[analytics] reports fallback:", e)
-        return {"period": "-", "cards": {}, "tables": {}}
-
-
 @router.get("/brief")
 async def get_brief():
     """AI executive brief - fleet health, savings, top recommendation (all ML)."""

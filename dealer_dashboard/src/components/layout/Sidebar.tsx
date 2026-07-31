@@ -7,7 +7,6 @@ import {
   HardHat,
   Brain,
   TrendingUp,
-  FileText,
   Bot,
   Settings,
 } from 'lucide-react';
@@ -21,7 +20,6 @@ const nav = [
   { to: '/workforce', label: 'Workforce', icon: HardHat },
   { to: '/decisions', label: 'Decision Center', icon: Brain },
   { to: '/forecast', label: 'Forecasting', icon: TrendingUp },
-  { to: '/reports', label: 'Reports', icon: FileText },
 ];
 
 export function Sidebar({ open }: { open: boolean }) {
