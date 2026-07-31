@@ -1,0 +1,6 @@
+asset_id,asset_name,equipment_type,manufacturer,model,expected_life_hours,daily_rental_rate
+MAC00001,Caterpillar 972 #0001,Wheel Loader,Caterpillar,972,13000,834
+MAC00002,Caterpillar 785 #0002,Dump Truck,Caterpillar,785,18000,608
+MAC00003,Caterpillar CP68B #0003,Compactor,Caterpillar,CP68B,9000,584
+MAC00004,Caterpillar 428F2 #0004,Backhoe Loader,Caterpillar,428F2,10000,279
+MAC00005,Caterpillar 390F #0005,Excavator,Caterpillar,390F,12000,953

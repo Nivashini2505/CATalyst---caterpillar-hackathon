@@ -1,0 +1,6 @@
+date,asset_id,operator_id,engine_hours_today,idle_hours_today,fuel_used_l,expected_fuel_l,gps_status,is_anomaly,anomaly_type
+2023-01-01,MAC00183,OP0141,3.61,0.26,224.64,224.88,OK,0,
+2023-01-02,MAC00183,OP0141,7.04,1.21,371.51,438.8,OK,0,
+2023-01-01,MAC00110,OP0016,3.76,0.4,269.35,233.76,OK,0,
+2023-01-09,MAC00492,,0.0,0.0,0.0,0.0,OK,1,unaccounted_asset
+2023-01-04,MAC00453,OP0007,1.59,5.28,204.0,182.59,OK,1,excess_idle
