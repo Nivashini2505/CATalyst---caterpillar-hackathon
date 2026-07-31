@@ -868,3 +868,169 @@ def kpi_band():
         "rentalExpiring": {"value": transit, "delta": 0, "trend": "flat"},
         "safetyAlerts": {"value": safety, "delta": -1, "trend": "down"},
     }
+
+
+# =====================================================================
+# 5) CONVERSATIONAL COPILOT
+# ---------------------------------------------------------------------
+# Keyword intent-matching over the real model outputs above. Each answer
+# is generated live from the anomaly / demand / maintenance pipelines -
+# nothing is scripted. Handles 8 question types plus natural variations.
+# =====================================================================
+
+COPILOT_PROMPTS = [
+    "Any anomalies this week?",
+    "Which assets are wasting money?",
+    "What's in demand next week?",
+    "Which machines need maintenance?",
+    "Recommend relocations",
+    "Which rentals expire soon?",
+    "Demand by country",
+    "Summarize today's fleet",
+]
+
+
+def _cp_anomalies() -> str:
+    s = anomaly_summary()
+    ev = detect_anomalies(limit=3)
+    sev = s.get("bySeverity", {})
+    out = [f"{s['totalAnomalies']} active anomalies flagged this week "
+           f"({sev.get('critical',0)} critical, {sev.get('high',0)} high). "
+           f"Estimated exposure ${s['estimatedDailyExposure']:,}/day.", ""]
+    if ev:
+        out.append("Top issues:")
+        for e in ev:
+            out.append(f"- {e['equipment']} - {e['reason']}")
+    return "\n".join(out)
+
+
+def _cp_idle() -> str:
+    ev = [e for e in detect_anomalies(limit=200) if e["anomalyType"] == "excess_idle"][:3]
+    if not ev:
+        return "No significantly under-utilized assets right now - idle levels are within normal range."
+    total = sum(e["estimatedDailyCost"] for e in ev)
+    out = [f"{len(ev)} assets are burning rental cost while idle (~${total:,}/day):", ""]
+    for e in ev:
+        out.append(f"- {e['equipment']} - {e['reason']}")
+    out.append("\nConsider off-hiring or relocating these.")
+    return "\n".join(out)
+
+
+def _cp_demand() -> str:
+    fc = predict_demand_forecast(7)
+    totals = {}
+    for row in fc:
+        for k, v in row.items():
+            if k != "day":
+                totals[k] = totals.get(k, 0) + v
+    top = sorted(totals.items(), key=lambda x: -x[1])
+    out = ["Demand forecast for the next 7 days (bookings by category):", ""]
+    for cat, val in top:
+        out.append(f"- {cat}: {val}")
+    if top:
+        out.append(f"\nHighest demand: {top[0][0]}. Pre-position stock accordingly.")
+    return "\n".join(out)
+
+
+def _cp_maintenance() -> str:
+    fh = fleet_health_overview()
+    at_risk = sorted([(a, v) for a, v in fh.items() if v["maintenanceWithin30d"]],
+                     key=lambda x: -x[1]["riskScore"])
+    if not at_risk:
+        return "No machines are predicted to need service in the next 30 days - fleet health is stable."
+    machines = _machines().set_index("asset_id")
+    out = [f"{len(at_risk)} machines predicted to need service within 30 days. Highest risk:", ""]
+    for a, v in at_risk[:3]:
+        name = machines.loc[a]["asset_name"] if a in machines.index else a
+        pm = predict_maintenance(a)
+        out.append(f"- {name} - health {v['health']}/100, {pm['reason']}")
+    return "\n".join(out)
+
+
+def _cp_relocations() -> str:
+    ev = [e for e in detect_anomalies(limit=200) if e["anomalyType"] == "excess_idle"][:2]
+    if not ev:
+        return "No obvious relocation opportunities - utilization is balanced across sites."
+    out = ["Relocation opportunities (idle assets that could be redeployed):", ""]
+    for e in ev:
+        out.append(f"- Move {e['equipment']} (site {e['site']}) - {e['reason']}")
+    return "\n".join(out)
+
+
+def _cp_expiring() -> str:
+    n = kpi_band()["rentalExpiring"]["value"]
+    return (f"{n} rentals are approaching return/handover (in transit or ending soon). "
+            f"Recommend proactive renewal outreach to retain utilization.")
+
+
+def _cp_country(q: str) -> str:
+    names = {"india": "India", "usa": "USA", "germany": "Germany", "australia": "Australia"}
+    named = next((names[k] for k in names if k in q), None)
+    if named:
+        series = predict_demand_by_country(named).get("series", [])[:4]
+        out = [f"{named} - top equipment demand next week:", ""]
+        for r in series:
+            out.append(f"- {r['machineType']}: {r['forecastNextWeek']} ({r['trend']})")
+        return "\n".join(out)
+    comp = sorted(demand_country_comparison(None).get("data", []),
+                  key=lambda x: -x["forecast"])
+    out = ["Next-week demand by country:", ""]
+    for r in comp:
+        out.append(f"- {r['country']}: {r['forecast']} bookings")
+    if comp:
+        out.append(f"\nHighest overall demand: {comp[0]['country']}.")
+    return "\n".join(out)
+
+
+def _cp_summary() -> str:
+    b = executive_brief()
+    band = kpi_band()
+    return ("Fleet snapshot:\n"
+            f"- Utilization: {band['fleetUtilization']['value']}%\n"
+            f"- Active rentals: {band['activeRentals']['value']} | Idle: {band['idleEquipment']['value']}\n"
+            f"- Fleet health: {b['fleetHealth']}/100\n"
+            f"- {b['criticalDecisions']} critical decisions, ${b['potentialSavings']:,}/day at risk\n"
+            f"- Tomorrow's top demand: {b['demandTomorrow']}")
+
+
+def _cp_help() -> str:
+    return ("I'm your fleet copilot - I answer from live telemetry + the ML models. Try:\n"
+            + "\n".join(f"- {p}" for p in COPILOT_PROMPTS))
+
+
+def copilot_answer(query: str) -> str:
+    """Route a free-text question to the right live-data answer."""
+    q = (query or "").lower().strip()
+    if not q:
+        return _cp_help()
+
+    def has(*words):
+        return any(w in q for w in words)
+
+    try:
+        # Order matters: more specific intents first.
+        if has("anomal", "suspicious", "unauthorized", "unauthorised", "misuse",
+               "theft", "stolen", "flagged", "alert", "fraud"):
+            return _cp_anomalies()
+        if has("wasting", "waste", "bleeding", "losing money", "idle", "under-util",
+               "underutil", "under util", "sitting"):
+            return _cp_idle()
+        if has("maintenance", "service", "servic", "breakdown", "break down", "repair",
+               "health", "fail", "wear"):
+            return _cp_maintenance()
+        if has("relocat", "redeploy", "reposition", "transfer", "move ", "moved"):
+            return _cp_relocations()
+        if has("expir", "due back", "return", "ending", "handover", "renew"):
+            return _cp_expiring()
+        if has("country", "region", "india", "usa", "u.s", "germany", "australia", "where"):
+            return _cp_country(q)
+        if has("demand", "forecast", "in demand", "popular", "need next", "next week",
+               "busy", "trend"):
+            return _cp_demand()
+        if has("summar", "overview", "today", "snapshot", "status", "brief",
+               "how are we", "how's the fleet", "hows the fleet"):
+            return _cp_summary()
+        return _cp_help()
+    except Exception as e:
+        print("[copilot] answer failed:", e)
+        return _cp_help()

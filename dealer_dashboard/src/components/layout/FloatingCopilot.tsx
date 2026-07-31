@@ -11,10 +11,14 @@ interface Msg {
 // The copilot answers these fleet questions. Kept always-visible in the panel
 // so the user can always pick a prompt the assistant can respond to.
 const SUGGESTED_PROMPTS = [
+  'Any anomalies this week?',
   'Which assets are wasting money?',
-  'Recommend relocations.',
-  "Summarize today's fleet.",
-  'Which rentals expire tomorrow?',
+  "What's in demand next week?",
+  'Which machines need maintenance?',
+  'Recommend relocations',
+  'Which rentals expire soon?',
+  'Demand by country',
+  "Summarize today's fleet",
 ];
 
 export function FloatingCopilot() {
