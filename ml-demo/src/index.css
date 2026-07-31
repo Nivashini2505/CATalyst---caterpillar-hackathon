@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(255,205,17,0.06), transparent 60%),
+    #0C0D0F;
+  color: #EAECEF;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-white/[0.06] bg-ink-600/70 backdrop-blur-sm shadow-card;
+  }
+  .card-hover { @apply transition-all duration-200 hover:border-cat-yellow/30 hover:-translate-y-0.5; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold; }
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-semibold transition-colors;
+  }
+  .btn-primary { @apply bg-cat-yellow text-ink-900 hover:bg-cat-soft; }
+  .btn-ghost { @apply bg-ink-500/50 text-ink-100 hover:bg-ink-500/80; }
+  .select {
+    @apply rounded-lg border border-white/[0.08] bg-ink-600 px-3 py-2 text-sm text-ink-50
+           focus:border-cat-yellow/40 focus:outline-none;
+  }
+}
+
+.scrollbar-thin::-webkit-scrollbar { width: 8px; height: 8px; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 8px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
