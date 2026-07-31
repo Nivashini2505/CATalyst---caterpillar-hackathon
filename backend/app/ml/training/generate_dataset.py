@@ -125,39 +125,31 @@ CITIES = {
     ],
 }
 
+# Catalog restricted to the 9 equipment types the team uses in the live DB.
+# Real Caterpillar models, matching the live `assets` table where possible
+# (CAT 320 GC / 336 GC excavators, D6 / D8T dozers, 950 GC / 966M wheel
+# loaders, 420F2 backhoe, 140 GC grader, etc.).
 MANUFACTURERS_MODELS = {
-    "Excavator":         [("Caterpillar","320D"),("Caterpillar","336F"),("Caterpillar","349F"),("Caterpillar","390F"),("Komatsu","PC200-8"),("Hitachi","ZX350"),("JCB","JS205")],
-    "Bulldozer":         [("Caterpillar","D6T"),("Caterpillar","D8T"),("Caterpillar","D9T"),("Caterpillar","D11T"),("Komatsu","D65PX-18"),("Komatsu","D155A-6")],
-    "Wheel Loader":      [("Caterpillar","966M"),("Caterpillar","980M"),("Caterpillar","950GC"),("Komatsu","WA470-8"),("Volvo","L120H")],
-    "Backhoe Loader":    [("Caterpillar","420F"),("Caterpillar","428F"),("JCB","3DX Xtra"),("JCB","3CX Compact"),("Case","580N")],
-    "Dump Truck":        [("Caterpillar","745C"),("Caterpillar","770G"),("Caterpillar","777G"),("Caterpillar","785C"),("Komatsu","HD465-7"),("Volvo","A40G")],
-    "Motor Grader":      [("Caterpillar","12M3"),("Caterpillar","14M3"),("Caterpillar","16M3"),("Komatsu","GD655-6"),("John Deere","672G")],
-    "Road Roller":       [("Caterpillar","CS56B"),("Caterpillar","CS78B"),("Bomag","BW 213"),("JCB","VMT 860"),("Hamm","3520")],
-    "Concrete Mixer":    [("Schwing Stetter","AM 7 CBM"),("SANY","SY308C-8"),("Putzmeister","TMM 24-4"),("Ajax Fiori","ARGO 4000"),("Liebherr","HTM 1004")],
-    "Mobile Crane":      [("Grove","GMK4100L-1"),("Tadano","ATF 60G-3"),("Liebherr","LTM 1050-3.1"),("Terex","AC 100/4L"),("XCMG","QY50KA")],
-    "Forklift":          [("Toyota","8FGCU25"),("Hyster","H50FT"),("Caterpillar","EP18NT"),("Crown","SC 6000"),("Linde","H30D")],
-    "Skid Steer Loader": [("Caterpillar","236D3"),("Caterpillar","262D3"),("Bobcat","S650"),("Bobcat","S770"),("Kubota","SSV75")],
-    "Snow Plow":         [("Western","Wideout XL"),("Fisher","HD2"),("Boss","DXT 9ft2in"),("Caterpillar","VBX18"),("SnowEx","HDV")],
-    "Generator":         [("Caterpillar","DE110E0"),("Caterpillar","DE165"),("Cummins","C220D5"),("Kohler","250REOZK"),("Atlas Copco","QAS 60")],
-    "Water Pump":        [("Caterpillar","WP450"),("Sykes","CP150"),("Godwin","CD150M"),("Grindex","Major H"),("Tsurumi","HS3.75S")],
-    "Air Compressor":    [("Caterpillar","XAS 400"),("Atlas Copco","XAS 185"),("Sullair","185"),("Ingersoll Rand","P185WJD"),("Doosan","P185WDO")],
+    "Excavator":         [("Caterpillar","320 GC"),("Caterpillar","336 GC"),("Caterpillar","349"),("Caterpillar","374"),("Caterpillar","390F")],
+    "Dozer":             [("Caterpillar","D6"),("Caterpillar","D8T"),("Caterpillar","D9"),("Caterpillar","D11")],
+    "Wheel Loader":      [("Caterpillar","950 GC"),("Caterpillar","966M"),("Caterpillar","980M"),("Caterpillar","972")],
+    "Backhoe Loader":    [("Caterpillar","420F2"),("Caterpillar","428F2"),("Caterpillar","434F2")],
+    "Motor Grader":      [("Caterpillar","140 GC"),("Caterpillar","150"),("Caterpillar","14M3"),("Caterpillar","160")],
+    "Compactor":         [("Caterpillar","CS56B"),("Caterpillar","CS78B"),("Caterpillar","CB13"),("Caterpillar","CP68B")],
+    "Scraper":           [("Caterpillar","621K"),("Caterpillar","627K"),("Caterpillar","631K"),("Caterpillar","657")],
+    "Dump Truck":        [("Caterpillar","745"),("Caterpillar","770G"),("Caterpillar","777G"),("Caterpillar","785")],
+    "Skid Steer Loader": [("Caterpillar","236D3"),("Caterpillar","262D3"),("Caterpillar","272D3"),("Caterpillar","242D3")],
 }
 MACHINE_TYPES = list(MANUFACTURERS_MODELS.keys())
 
 SEASONALITY = {
-    "Snow Plow": {
-        "USA":       [3.0,2.5,1.8,0.3,0.05,0.05,0.05,0.05,0.10,0.50,1.80,3.20],
-        "Germany":   [2.7,2.2,1.5,0.4,0.05,0.05,0.05,0.05,0.15,0.50,1.50,2.50],
-        "India":     [0.02,0.02,0.02,0.02,0.02,0.02,0.02,0.02,0.02,0.02,0.02,0.02],
-        "Australia": [0.02,0.02,0.02,0.05,0.15,0.30,0.40,0.35,0.15,0.05,0.02,0.02],
-    },
     "Excavator": {
         "India":     [1.40,1.50,1.60,1.40,1.00,0.50,0.35,0.35,0.55,1.35,1.60,1.55],
         "USA":       [0.70,0.70,1.00,1.30,1.50,1.60,1.55,1.50,1.40,1.30,1.00,0.75],
         "Germany":   [0.55,0.60,0.85,1.30,1.60,1.70,1.65,1.55,1.40,1.20,0.90,0.60],
         "Australia": [1.35,1.40,1.30,1.50,1.55,1.25,1.05,1.05,1.30,1.40,1.40,1.35],
     },
-    "Bulldozer": {
+    "Dozer": {
         "India":     [1.30,1.45,1.55,1.30,0.95,0.45,0.30,0.30,0.50,1.30,1.55,1.50],
         "USA":       [0.70,0.75,1.00,1.30,1.55,1.65,1.55,1.50,1.40,1.25,1.00,0.75],
         "Germany":   [0.55,0.60,0.85,1.30,1.60,1.70,1.60,1.50,1.40,1.20,0.85,0.60],
@@ -175,41 +167,29 @@ SEASONALITY = {
         "Germany":   [0.60,0.65,0.90,1.25,1.50,1.60,1.55,1.45,1.35,1.20,0.90,0.65],
         "Australia": [1.25,1.30,1.25,1.35,1.45,1.25,1.15,1.10,1.25,1.35,1.30,1.25],
     },
-    "Dump Truck": {
-        "India":     [1.35,1.40,1.50,1.35,1.00,0.50,0.35,0.35,0.55,1.30,1.50,1.45],
-        "USA":       [0.80,0.85,1.00,1.25,1.40,1.50,1.45,1.40,1.35,1.25,1.05,0.85],
-        "Germany":   [0.70,0.75,0.95,1.25,1.50,1.60,1.55,1.45,1.35,1.20,0.95,0.75],
-        "Australia": [1.35,1.40,1.35,1.45,1.50,1.35,1.25,1.20,1.35,1.40,1.40,1.35],
-    },
     "Motor Grader": {
         "India":     [1.50,1.55,1.55,1.35,1.00,0.40,0.25,0.25,0.50,1.40,1.60,1.55],
         "USA":       [0.75,0.80,1.00,1.30,1.50,1.55,1.50,1.45,1.35,1.25,1.00,0.80],
         "Germany":   [0.60,0.65,0.90,1.30,1.55,1.65,1.60,1.50,1.40,1.20,0.90,0.65],
         "Australia": [1.30,1.35,1.30,1.45,1.50,1.30,1.20,1.15,1.30,1.40,1.35,1.30],
     },
-    "Road Roller": {
+    "Compactor": {
         "India":     [1.60,1.65,1.50,1.25,0.85,0.30,0.20,0.20,0.45,1.50,1.70,1.65],
         "USA":       [0.65,0.70,0.95,1.30,1.55,1.65,1.60,1.50,1.40,1.20,0.90,0.70],
         "Germany":   [0.55,0.60,0.85,1.30,1.60,1.70,1.65,1.55,1.40,1.20,0.85,0.60],
         "Australia": [1.35,1.40,1.30,1.50,1.55,1.25,1.05,1.05,1.30,1.40,1.40,1.35],
     },
-    "Concrete Mixer": {
-        "India":     [1.40,1.50,1.60,1.40,1.00,0.40,0.25,0.25,0.50,1.35,1.60,1.55],
-        "USA":       [0.70,0.75,1.00,1.30,1.50,1.60,1.55,1.50,1.40,1.25,1.00,0.75],
-        "Germany":   [0.55,0.60,0.85,1.30,1.60,1.70,1.65,1.55,1.40,1.20,0.90,0.60],
-        "Australia": [1.30,1.35,1.30,1.45,1.50,1.25,1.10,1.10,1.30,1.40,1.35,1.30],
+    "Scraper": {
+        "India":     [1.35,1.45,1.55,1.35,1.00,0.45,0.30,0.30,0.50,1.35,1.55,1.50],
+        "USA":       [0.70,0.75,1.00,1.30,1.55,1.65,1.55,1.50,1.40,1.25,1.00,0.75],
+        "Germany":   [0.55,0.60,0.85,1.30,1.60,1.70,1.60,1.50,1.40,1.20,0.85,0.60],
+        "Australia": [1.30,1.35,1.30,1.45,1.55,1.30,1.15,1.10,1.30,1.40,1.35,1.30],
     },
-    "Mobile Crane": {
-        "India":     [1.20,1.30,1.35,1.20,1.00,0.70,0.55,0.55,0.75,1.20,1.35,1.30],
-        "USA":       [0.85,0.90,1.05,1.20,1.35,1.40,1.35,1.30,1.25,1.15,1.00,0.90],
-        "Germany":   [0.75,0.80,0.95,1.20,1.40,1.45,1.40,1.35,1.25,1.15,0.95,0.80],
-        "Australia": [1.20,1.25,1.20,1.30,1.35,1.20,1.10,1.10,1.20,1.25,1.25,1.20],
-    },
-    "Forklift": {
-        "India":     [1.00,1.00,1.05,1.00,0.95,0.90,0.90,0.90,1.00,1.15,1.20,1.10],
-        "USA":       [1.00,0.95,1.00,1.00,1.05,1.05,1.05,1.05,1.10,1.15,1.25,1.20],
-        "Germany":   [1.00,0.95,1.00,1.00,1.05,1.05,1.05,1.05,1.10,1.15,1.20,1.20],
-        "Australia": [1.05,1.00,1.00,1.00,1.05,1.05,1.00,1.00,1.05,1.15,1.20,1.15],
+    "Dump Truck": {
+        "India":     [1.35,1.40,1.50,1.35,1.00,0.50,0.35,0.35,0.55,1.30,1.50,1.45],
+        "USA":       [0.80,0.85,1.00,1.25,1.40,1.50,1.45,1.40,1.35,1.25,1.05,0.85],
+        "Germany":   [0.70,0.75,0.95,1.25,1.50,1.60,1.55,1.45,1.35,1.20,0.95,0.75],
+        "Australia": [1.35,1.40,1.35,1.45,1.50,1.35,1.25,1.20,1.35,1.40,1.40,1.35],
     },
     "Skid Steer Loader": {
         "India":     [1.20,1.30,1.35,1.25,1.00,0.60,0.40,0.40,0.60,1.20,1.35,1.30],
@@ -217,44 +197,23 @@ SEASONALITY = {
         "Germany":   [0.70,0.75,0.95,1.25,1.45,1.50,1.45,1.40,1.30,1.15,0.90,0.70],
         "Australia": [1.20,1.25,1.20,1.30,1.35,1.20,1.10,1.10,1.20,1.25,1.25,1.20],
     },
-    "Generator": {
-        "India":     [0.90,0.90,1.00,1.00,1.15,1.50,1.70,1.70,1.50,1.15,0.95,0.90],
-        "USA":       [1.05,1.00,1.00,1.05,1.10,1.15,1.20,1.35,1.40,1.25,1.10,1.15],
-        "Germany":   [1.15,1.05,1.00,1.00,1.00,1.05,1.05,1.05,1.00,1.05,1.10,1.20],
-        "Australia": [1.30,1.25,1.15,1.00,0.95,0.95,1.00,1.05,1.00,1.10,1.20,1.30],
-    },
-    "Water Pump": {
-        "India":     [0.80,0.80,0.90,1.00,1.15,1.70,1.90,1.90,1.60,1.10,0.85,0.80],
-        "USA":       [0.85,0.85,1.00,1.15,1.25,1.30,1.35,1.40,1.35,1.15,0.95,0.85],
-        "Germany":   [0.80,0.80,0.95,1.15,1.30,1.40,1.40,1.35,1.25,1.10,0.90,0.80],
-        "Australia": [1.35,1.30,1.15,1.05,1.00,0.95,0.90,0.95,1.05,1.20,1.30,1.40],
-    },
-    "Air Compressor": {
-        "India":     [1.20,1.30,1.35,1.20,0.95,0.55,0.40,0.40,0.60,1.20,1.35,1.30],
-        "USA":       [0.85,0.85,1.00,1.25,1.40,1.45,1.40,1.35,1.30,1.20,1.00,0.85],
-        "Germany":   [0.70,0.75,0.95,1.25,1.45,1.50,1.45,1.40,1.30,1.15,0.90,0.70],
-        "Australia": [1.20,1.25,1.20,1.30,1.35,1.20,1.10,1.10,1.20,1.25,1.25,1.20],
-    },
 }
 
 BASE_RATE = {
-    "Excavator": 850, "Bulldozer": 1200, "Wheel Loader": 700, "Backhoe Loader": 450,
-    "Dump Truck": 550, "Motor Grader": 900, "Road Roller": 500, "Concrete Mixer": 400,
-    "Mobile Crane": 1500, "Forklift": 200, "Skid Steer Loader": 300,
-    "Snow Plow": 350, "Generator": 250, "Water Pump": 150, "Air Compressor": 180,
+    "Excavator": 850, "Dozer": 1200, "Wheel Loader": 700, "Backhoe Loader": 450,
+    "Dump Truck": 550, "Motor Grader": 900, "Compactor": 500, "Scraper": 1100,
+    "Skid Steer Loader": 300,
 }
 COUNTRY_RATE_MULT = {"India": 0.55, "USA": 1.00, "Germany": 1.10, "Australia": 1.05}
 FUEL_CAPACITY = {
-    "Excavator": 400, "Bulldozer": 620, "Wheel Loader": 380, "Backhoe Loader": 130,
-    "Dump Truck": 750, "Motor Grader": 415, "Road Roller": 200, "Concrete Mixer": 300,
-    "Mobile Crane": 500, "Forklift": 55, "Skid Steer Loader": 100,
-    "Snow Plow": 90, "Generator": 220, "Water Pump": 60, "Air Compressor": 120,
+    "Excavator": 400, "Dozer": 620, "Wheel Loader": 380, "Backhoe Loader": 130,
+    "Dump Truck": 750, "Motor Grader": 415, "Compactor": 200, "Scraper": 490,
+    "Skid Steer Loader": 100,
 }
 EXPECTED_LIFE_HOURS = {
-    "Excavator": 12000, "Bulldozer": 15000, "Wheel Loader": 13000, "Backhoe Loader": 10000,
-    "Dump Truck": 18000, "Motor Grader": 14000, "Road Roller": 9000, "Concrete Mixer": 8000,
-    "Mobile Crane": 20000, "Forklift": 12000, "Skid Steer Loader": 9000,
-    "Snow Plow": 6000, "Generator": 15000, "Water Pump": 8000, "Air Compressor": 10000,
+    "Excavator": 12000, "Dozer": 15000, "Wheel Loader": 13000, "Backhoe Loader": 10000,
+    "Dump Truck": 18000, "Motor Grader": 14000, "Compactor": 9000, "Scraper": 16000,
+    "Skid Steer Loader": 9000,
 }
 
 # Base company names + division/branch variants gives us 100+ realistic customers.
@@ -325,10 +284,9 @@ BOOKING_REASONS = {
     "Port":      ["Wharf reconstruction excavation","Container yard grading","Berth deepening dredge support","Rail loop earthworks"],
 }
 PURPOSE_CATEGORY = {
-    "Excavator":"Excavation","Bulldozer":"Earthmoving","Wheel Loader":"Material Handling","Backhoe Loader":"General Utility",
-    "Dump Truck":"Hauling","Motor Grader":"Grading","Road Roller":"Compaction","Concrete Mixer":"Concrete Work",
-    "Mobile Crane":"Lifting","Forklift":"Material Handling","Skid Steer Loader":"General Utility",
-    "Snow Plow":"Snow Clearance","Generator":"Power Supply","Water Pump":"Dewatering","Air Compressor":"Air Supply",
+    "Excavator":"Excavation","Dozer":"Earthmoving","Wheel Loader":"Material Handling",
+    "Backhoe Loader":"General Utility","Dump Truck":"Hauling","Motor Grader":"Grading",
+    "Compactor":"Compaction","Scraper":"Earthmoving & Hauling","Skid Steer Loader":"General Utility",
 }
 
 HOLIDAYS_BY_COUNTRY = {
@@ -562,13 +520,13 @@ def build_machines(sites_df):
     for i in range(N_MACHINES):
         country = rw_choice(COUNTRIES, COUNTRY_WEIGHTS)
         if country == "India":
-            type_w = {"Backhoe Loader":3,"Excavator":3,"Concrete Mixer":2,"Road Roller":2,"Generator":2,"Water Pump":2,"Dump Truck":2,"Mobile Crane":2,"Wheel Loader":2,"Bulldozer":1,"Snow Plow":0.1,"Motor Grader":1,"Forklift":1,"Skid Steer Loader":1,"Air Compressor":1}
+            type_w = {"Backhoe Loader":3,"Excavator":3,"Compactor":2,"Dump Truck":2,"Wheel Loader":2,"Motor Grader":1.5,"Dozer":1.5,"Scraper":1,"Skid Steer Loader":1}
         elif country == "USA":
-            type_w = {"Excavator":3,"Bulldozer":2,"Dump Truck":2,"Wheel Loader":2,"Snow Plow":2,"Motor Grader":1.5,"Backhoe Loader":1,"Concrete Mixer":1.5,"Road Roller":1.5,"Mobile Crane":2,"Forklift":2,"Skid Steer Loader":2,"Generator":1.5,"Water Pump":1,"Air Compressor":1.5}
+            type_w = {"Excavator":3,"Dozer":2,"Dump Truck":2,"Wheel Loader":2,"Motor Grader":1.5,"Scraper":1.5,"Compactor":1.5,"Backhoe Loader":1,"Skid Steer Loader":2}
         elif country == "Germany":
-            type_w = {"Excavator":3,"Bulldozer":2,"Wheel Loader":2,"Dump Truck":2,"Snow Plow":1.5,"Motor Grader":1,"Mobile Crane":2,"Concrete Mixer":1.5,"Road Roller":1.5,"Backhoe Loader":1,"Forklift":2,"Skid Steer Loader":1.5,"Generator":1,"Water Pump":1,"Air Compressor":1.5}
+            type_w = {"Excavator":3,"Dozer":2,"Wheel Loader":2,"Dump Truck":2,"Motor Grader":1.5,"Compactor":1.5,"Scraper":1,"Backhoe Loader":1,"Skid Steer Loader":1.5}
         else:
-            type_w = {"Dump Truck":3,"Excavator":3,"Bulldozer":3,"Wheel Loader":2,"Motor Grader":2,"Mobile Crane":2,"Water Pump":1.5,"Generator":2,"Snow Plow":0.2,"Forklift":1.5,"Skid Steer Loader":1,"Backhoe Loader":1,"Road Roller":1.5,"Concrete Mixer":1,"Air Compressor":1.5}
+            type_w = {"Dump Truck":3,"Excavator":3,"Dozer":3,"Wheel Loader":2,"Motor Grader":2,"Scraper":2,"Compactor":1.5,"Backhoe Loader":1,"Skid Steer Loader":1}
         m_type = random.choices(list(type_w.keys()), weights=list(type_w.values()))[0]
         mfr, model = random.choice(MANUFACTURERS_MODELS[m_type])
         py = random.choices(range(2018, 2026), weights=[1,2,3,3,3,3,3,2])[0]
@@ -588,8 +546,8 @@ def build_machines(sites_df):
                      "asset_name": f"{mfr} {model} #{i+1:04d}",
                      "equipment_type": m_type,"manufacturer": mfr,"model": model,"serial_number": serial,
                      "purchase_year": py,
-                     "engine_type": random.choice(["Diesel","Diesel","Diesel","Electric-Hybrid"]) if m_type != "Snow Plow" else "Attachment-No-Engine",
-                     "fuel_type": "Diesel" if m_type not in ("Snow Plow","Forklift") else random.choice(["Diesel","LPG","Electric"]),
+                     "engine_type": "Diesel",
+                     "fuel_type": "Diesel",
                      "fuel_capacity_l": FUEL_CAPACITY[m_type],
                      "horsepower": int(BASE_RATE[m_type] / 3 * random.uniform(0.9, 1.15)),
                      "operating_weight_kg": int(BASE_RATE[m_type] * random.uniform(15, 30)),
@@ -612,16 +570,13 @@ def compute_demand(d, country, m_type, weather_row, holiday_set):
     season = SEASONALITY[m_type][country][d.month - 1]
     wd_f = weekday_factor(d)
     rain, snow, storm = weather_row["rainfall_mm"], weather_row["snowfall_mm"], weather_row["storm_flag"]
-    if m_type == "Snow Plow":
-        weather_mult = 1.0 + min(2.5, snow / 5)
-    elif m_type == "Water Pump":
-        weather_mult = 1.0 + min(1.5, rain / 15)
-    elif m_type == "Generator":
-        weather_mult = 1.0 + (0.4 if storm else 0) + min(0.6, rain / 25)
-    elif m_type in ("Excavator","Bulldozer","Backhoe Loader","Motor Grader","Road Roller","Concrete Mixer"):
+    # All 9 types are earthmoving / construction machines: heavy rain slows
+    # exposed earthwork and snow largely halts it. Hauling / loading machines
+    # (trucks, loaders, skid steers) are a bit less weather-sensitive.
+    if m_type in ("Excavator", "Dozer", "Backhoe Loader", "Motor Grader", "Compactor", "Scraper"):
         weather_mult = max(0.4, 1.0 - min(0.5, rain / 40)) if snow == 0 else 0.5
-    else:
-        weather_mult = 1.0
+    else:  # Dump Truck, Wheel Loader, Skid Steer Loader
+        weather_mult = max(0.6, 1.0 - min(0.35, rain / 60)) if snow == 0 else 0.7
     hol = 0.4 if d in holiday_set.get(country, set()) else 1.0
     return max(0.0, season * wd_f * weather_mult * hol * year_growth(d) * np.random.normal(1.0, 0.10))
 

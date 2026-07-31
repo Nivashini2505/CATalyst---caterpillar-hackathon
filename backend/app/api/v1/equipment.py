@@ -1,13 +1,22 @@
 from fastapi import APIRouter
 from sqlalchemy.future import select
+from sqlalchemy import text
 from app.db.postgres import AsyncSessionLocal
 from app.models.postgres.core import Asset, Site
 from pydantic import BaseModel
 import hashlib
+import time
 
 from app.ml import inference as ml
 
 router = APIRouter()
+
+# Rated life per type (for life-used-ratio on live DB assets).
+_REAL_LIFE = {"Excavator": 12000, "Dozer": 15000, "Wheel Loader": 13000,
+              "Backhoe Loader": 10000, "Motor Grader": 14000, "Dump Truck": 18000,
+              "Compactor": 9000, "Scraper": 16000, "Skid Steer Loader": 9000}
+
+_live_cache = {"ts": 0.0, "data": []}   # 30s TTL cache for the live DB fetch
 
 
 def _stable_int(seed: str, lo: int, hi: int) -> int:
@@ -31,18 +40,81 @@ class EquipmentUIResponse(BaseModel):
     rentalRemainingDays: int
     status: str
     riskScore: int
+    isLive: bool = False
 
 
 # Map the detailed equipment_type to the coarse UI category the Fleet filter uses.
 _UI_CATEGORY = {
-    "Excavator": "Excavator", "Bulldozer": "Dozer", "Wheel Loader": "Loader",
+    "Excavator": "Excavator", "Dozer": "Dozer", "Wheel Loader": "Loader",
     "Backhoe Loader": "Loader", "Skid Steer Loader": "Loader", "Motor Grader": "Grader",
-    "Dump Truck": "Truck", "Road Roller": "Compactor", "Concrete Mixer": "Compactor",
-    "Mobile Crane": "Excavator", "Forklift": "Loader", "Snow Plow": "Truck",
-    "Generator": "Truck", "Water Pump": "Truck", "Air Compressor": "Truck",
+    "Dump Truck": "Truck", "Compactor": "Compactor", "Scraper": "Truck",
 }
 
 _STATUS_MAP = {"rented": "working", "available": "idle", "maintenance": "maintenance", "transit": "transit"}
+
+
+async def _fetch_live_db_assets():
+    """
+    Fetch the REAL assets from the team's shared Postgres (Supabase), map their
+    latest telemetry into the maintenance model's feature schema, and return
+    them with live ML-predicted health/risk. Cached 30s. Returns [] if the DB
+    is unreachable so the dashboard never breaks.
+    """
+    now = time.time()
+    if now - _live_cache["ts"] < 30 and _live_cache["data"]:
+        return _live_cache["data"]
+    try:
+        async with AsyncSessionLocal() as db:
+            assets = (await db.execute(text(
+                "SELECT asset_id, asset_name, equipment_type, model, current_status, "
+                "total_engine_hours, fuel_capacity FROM assets ORDER BY asset_id"))).mappings().all()
+            # Latest telemetry row per asset in one query.
+            tel_rows = (await db.execute(text(
+                "SELECT DISTINCT ON (asset_id) asset_id, engine_temperature, coolant_temperature, "
+                "hydraulic_oil_temperature, hydraulic_pressure, battery_voltage, engine_rpm, "
+                "fuel_consumption_lph, idle_hours FROM telemetry ORDER BY asset_id, timestamp DESC"))).mappings().all()
+            tel = {r["asset_id"]: r for r in tel_rows}
+
+            out = []
+            for a in assets:
+                aid = a["asset_id"]
+                t = tel.get(aid, {})
+                life = _REAL_LIFE.get(a["equipment_type"], 12000)
+                teh = float(a["total_engine_hours"] or 0)
+                fuel_cap = float(a["fuel_capacity"] or 300)
+                fuel_lph = float(t.get("fuel_consumption_lph") or 0)
+                feats = {
+                    "total_engine_hours": teh,
+                    "life_used_ratio": teh / max(1, life),
+                    "engine_hours_today": 6.0, "idle_hours_today": 2.0,
+                    "oil_temperature_c": t.get("hydraulic_oil_temperature"),
+                    "engine_temperature_c": t.get("engine_temperature"),
+                    "coolant_temperature_c": t.get("coolant_temperature"),
+                    "battery_voltage_v": t.get("battery_voltage"),
+                    "hydraulic_pressure_bar": t.get("hydraulic_pressure"),
+                    "rpm": t.get("engine_rpm"),
+                    "fuel_ratio": fuel_lph / max(1.0, 0.15 * fuel_cap),
+                }
+                hp = ml.health_from_features(feats)
+                status = _STATUS_MAP.get(a["current_status"], "idle")
+                if hp["maintenanceWithin30d"] and hp["riskScore"] >= 60 and status != "maintenance":
+                    status = "critical"
+                out.append(EquipmentUIResponse(
+                    id=aid, name=a["asset_name"], model=a["model"] or "-",
+                    category=_UI_CATEGORY.get(a["equipment_type"], "Excavator"),
+                    image=_image_for(a["equipment_type"]),
+                    site="Live Fleet (DB)", operator="-",
+                    health=hp["health"], engineHours=int(teh),
+                    idleHours=int(float(t.get("idle_hours") or 0)) % 24,
+                    rentalRemainingDays=_stable_int(aid, 1, 30),
+                    status=status, riskScore=hp["riskScore"], isLive=True,
+                ))
+            _live_cache["ts"] = now
+            _live_cache["data"] = out
+            return out
+    except Exception as e:
+        print("[equipment] live DB fetch skipped:", e)
+        return []
 
 
 def _image_for(equipment_type: str) -> str:
@@ -107,14 +179,17 @@ def _from_snapshot():
 
 @router.get("", response_model=list[EquipmentUIResponse])
 async def get_all_equipment():
-    # Prefer the ML serving snapshot (richer fleet + real predicted health).
-    # No DB dependency here, so the fleet list keeps working even if Postgres
-    # is down during the demo.
+    # The 8 REAL assets from the team's shared DB (with live ML predictions)
+    # are listed first, followed by the richer simulated fleet the models were
+    # trained on. Both are enriched by the same maintenance model.
+    live = await _fetch_live_db_assets()
     try:
         if ml.is_ready():
-            return _from_snapshot()
+            return live + _from_snapshot()
     except Exception as e:
         print("[equipment] snapshot path failed, falling back to DB:", e)
+    if live:
+        return live
 
     # Fallback: original DB-backed path. Open a session manually so a missing
     # DB doesn't break dependency resolution before we even get here.

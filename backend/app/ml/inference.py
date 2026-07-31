@@ -47,20 +47,14 @@ SRV = HERE / "serving"
 # UI category grouping used by the existing dashboard charts.
 UI_CATEGORY = {
     "Excavator": "Excavators",
-    "Bulldozer": "Dozers",
+    "Dozer": "Dozers",
     "Wheel Loader": "Loaders",
     "Backhoe Loader": "Loaders",
     "Skid Steer Loader": "Loaders",
     "Motor Grader": "Graders",
     "Dump Truck": "Trucks",
-    "Road Roller": "Compactors",
-    "Concrete Mixer": "Concrete",
-    "Mobile Crane": "Cranes",
-    "Forklift": "Forklifts",
-    "Snow Plow": "Snow",
-    "Generator": "Power",
-    "Water Pump": "Pumps",
-    "Air Compressor": "Compressors",
+    "Compactor": "Compactors",
+    "Scraper": "Scrapers",
 }
 
 ANOMALY_LABELS = {
@@ -617,6 +611,40 @@ def predict_maintenance(asset_id: str):
         "lifeUsedPct": round(feats["life_used_ratio"] * 100, 1),
         "vibration": round(feats["vibration_g"], 3),
         "oilTemp": round(feats["oil_temperature_c"], 1),
+    }
+
+
+def health_from_features(feats: dict) -> dict:
+    """
+    Run the maintenance model on a raw feature dict (used for LIVE database
+    assets whose telemetry is mapped in from the team's Postgres, so they are
+    not in the serving snapshot). Returns health / risk / 30-day flag + reason.
+    """
+    models = _models()
+    bundle = models["maintenance"]
+    if bundle is not None:
+        cols = bundle["columns"]
+        X = pd.DataFrame([{c: _num(feats.get(c), bundle["feature_medians"].get(c, 0)) for c in cols}])[cols]
+        prob = float(bundle["classifier"].predict_proba(X)[0, 1])
+        health = float(np.clip(bundle["regressor"].predict(X)[0], 5, 100))
+    else:
+        lu = _num(feats.get("life_used_ratio"), 0.5)
+        prob = min(0.9, lu)
+        health = float(np.clip(100 * (1 - lu), 5, 100))
+    drivers = []
+    if _num(feats.get("life_used_ratio"), 0) > 0.8:
+        drivers.append(f"engine hours at {_num(feats.get('life_used_ratio'),0)*100:.0f}% of rated life")
+    if _num(feats.get("oil_temperature_c"), 85) > 100:
+        drivers.append(f"high oil temperature ({_num(feats.get('oil_temperature_c'),0):.0f}C)")
+    if _num(feats.get("hydraulic_pressure_bar"), 200) < 180:
+        drivers.append(f"low hydraulic pressure ({_num(feats.get('hydraulic_pressure_bar'),0):.0f} bar)")
+    reason = ("Service recommended: " + ", ".join(drivers)) if drivers else "Operating within normal parameters."
+    return {
+        "health": int(round(health)),
+        "riskScore": int(round(prob * 100)),
+        "maintenanceProbability": round(prob, 3),
+        "maintenanceWithin30d": bool(prob >= 0.5),
+        "reason": reason,
     }
 
 

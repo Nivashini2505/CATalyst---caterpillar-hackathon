@@ -1,9 +1,9 @@
 {
   "model": "Hybrid (IsolationForest + RandomForest + type-classifier)",
-  "n_rows": 331456,
-  "anomaly_rate_pct": 6.06,
-  "AUC_ROC": 0.9999,
-  "type_accuracy_on_flagged": 0.997,
+  "n_rows": 310481,
+  "anomaly_rate_pct": 6.05,
+  "AUC_ROC": 0.9998,
+  "type_accuracy_on_flagged": 0.9965,
   "features": [
     "engine_hours_today",
     "idle_hours_today",
@@ -34,63 +34,63 @@
   "top_features": [
     {
       "feature": "iforest_score",
-      "importance": 0.5396323789408854
+      "importance": 0.5532971304226804
     },
     {
       "feature": "engine_hours_today",
-      "importance": 0.08080668337661268
+      "importance": 0.07584844736211302
     },
     {
       "feature": "fuel_ratio",
-      "importance": 0.07915552592377392
+      "importance": 0.07111895828078826
     },
     {
       "feature": "idle_ratio",
-      "importance": 0.05686344082267956
-    },
-    {
-      "feature": "idle_hours_today",
-      "importance": 0.04345187551092867
-    },
-    {
-      "feature": "has_operator",
-      "importance": 0.042787109180164366
+      "importance": 0.054885106838517446
     },
     {
       "feature": "gps_offline",
-      "importance": 0.03406856555052853
+      "importance": 0.04280102694954735
     },
     {
-      "feature": "engine_no_op",
-      "importance": 0.020948976900230617
+      "feature": "has_operator",
+      "importance": 0.04217144218353314
     },
     {
-      "feature": "expected_fuel_l",
-      "importance": 0.01938460484203379
+      "feature": "idle_hours_today",
+      "importance": 0.04156579409099862
     },
     {
       "feature": "fuel_used_l",
-      "importance": 0.019241746082101045
+      "importance": 0.024016573638812808
+    },
+    {
+      "feature": "expected_fuel_l",
+      "importance": 0.021731450728205884
     },
     {
       "feature": "gps_jump_flag",
-      "importance": 0.0174774076608251
+      "importance": 0.01617689920602509
+    },
+    {
+      "feature": "engine_no_op",
+      "importance": 0.015587649996935701
     },
     {
       "feature": "gps_out_geo",
-      "importance": 0.011706681792884786
+      "importance": 0.010912559418673279
     },
     {
       "feature": "engine_temperature_c",
-      "importance": 0.0047700149166527706
+      "importance": 0.004361873890695683
     },
     {
-      "feature": "coolant_temperature_c",
-      "importance": 0.004443448559304447
+      "feature": "total_engine_hours",
+      "importance": 0.003848611316644917
     },
     {
-      "feature": "oil_pressure_kpa",
-      "importance": 0.003696682232525686
+      "feature": "vibration_g",
+      "importance": 0.0031685370439299425
     }
   ],
   "target": "is_anomaly",

@@ -1,10 +1,10 @@
 {
   "classifier": "RandomForest / 30-day maintenance horizon",
   "regressor": "GradientBoosting / continuous health 5..100",
-  "n_rows": 331456,
-  "maintenance_rate_pct": 2.55,
-  "classifier_AUC": 0.9517,
-  "regressor_MAE": 0.057,
+  "n_rows": 310481,
+  "maintenance_rate_pct": 1.85,
+  "classifier_AUC": 0.9733,
+  "regressor_MAE": 0.054,
   "features": [
     "total_engine_hours",
     "life_used_ratio",
@@ -23,55 +23,55 @@
   "top_features": [
     {
       "feature": "life_used_ratio",
-      "importance": 0.4135006396320745
-    },
-    {
-      "feature": "vibration_g",
-      "importance": 0.18972525656264477
+      "importance": 0.3773902550258063
     },
     {
       "feature": "total_engine_hours",
-      "importance": 0.15784599485402037
+      "importance": 0.2468630110627766
+    },
+    {
+      "feature": "vibration_g",
+      "importance": 0.14516928693644093
     },
     {
       "feature": "oil_temperature_c",
-      "importance": 0.06159463223689556
+      "importance": 0.06142808965464376
     },
     {
       "feature": "engine_temperature_c",
-      "importance": 0.05246154791443572
+      "importance": 0.057951893680134085
     },
     {
       "feature": "oil_pressure_kpa",
-      "importance": 0.035025158600160325
+      "importance": 0.03608678392745903
     },
     {
       "feature": "coolant_temperature_c",
-      "importance": 0.03205545619930535
+      "importance": 0.02969453901437872
     },
     {
       "feature": "hydraulic_pressure_bar",
-      "importance": 0.013791933332046499
+      "importance": 0.011225680490041958
     },
     {
       "feature": "battery_voltage_v",
-      "importance": 0.011733254390046698
-    },
-    {
-      "feature": "fuel_ratio",
-      "importance": 0.008142190657847811
-    },
-    {
-      "feature": "idle_hours_today",
-      "importance": 0.008115434579051159
+      "importance": 0.010249553816168312
     },
     {
       "feature": "rpm",
-      "importance": 0.008084293960743349
+      "importance": 0.006239552621745729
+    },
+    {
+      "feature": "fuel_ratio",
+      "importance": 0.006192301496835807
+    },
+    {
+      "feature": "idle_hours_today",
+      "importance": 0.005782009386638864
     },
     {
       "feature": "engine_hours_today",
-      "importance": 0.007924207080727684
+      "importance": 0.005727042886929887
     }
   ]
 }
