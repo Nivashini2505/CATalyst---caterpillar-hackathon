@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { TrendingUp, ShieldAlert, Wrench, ArrowRight, Sparkles } from 'lucide-react';
+import { TrendingUp, ShieldAlert, Wrench, ArrowRight, Sparkles, Bot } from 'lucide-react';
 import { getModelMetrics } from '@/api';
 
 const MODULES = [
@@ -84,6 +84,34 @@ export function Landing() {
           </motion.div>
         ))}
       </div>
+
+      {/* Copilot hint */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.45 }}
+        className="card flex flex-col items-center justify-between gap-4 p-5 sm:flex-row"
+      >
+        <div className="flex items-center gap-3.5">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cat-yellow/10 text-cat-yellow">
+            <Bot className="h-6 w-6" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2 text-sm font-bold text-white">
+              Ask the CAT Copilot
+              <span className="chip border border-ok/30 bg-ok/10 text-ok">
+                <span className="h-1.5 w-1.5 rounded-full bg-ok animate-pulse-soft" /> live
+              </span>
+            </div>
+            <p className="mt-0.5 text-sm text-ink-200">
+              A natural-language assistant answered live by the three models — try “any anomalies this week?” or “how’s MAC00006?”
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 text-xs font-medium text-cat-yellow">
+          <span>Tap the</span>
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-cat-yellow text-ink-900"><Bot className="h-4 w-4" /></span>
+          <span>button, bottom-right</span>
+        </div>
+      </motion.div>
     </div>
   );
 }
