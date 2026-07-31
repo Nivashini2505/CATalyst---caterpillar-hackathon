@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import json
 import math
+import re
 from functools import lru_cache
 from pathlib import Path
 from datetime import datetime, timedelta
@@ -993,9 +994,112 @@ def _cp_summary() -> str:
             f"- Tomorrow's top demand: {b['demandTomorrow']}")
 
 
+def _find_machine(q: str):
+    """Locate one machine from a free-text query: by asset id (MAC00002),
+    by tag (#0204), or by model/name token (420F, PC200)."""
+    machines = _machines()
+    # 1. asset id like MAC00002 / mac2
+    m = re.search(r'mac0*(\d+)', q)
+    if m:
+        padded = f"MAC{int(m.group(1)):05d}"
+        row = machines[machines["asset_id"] == padded]
+        if not row.empty:
+            return row.iloc[0]
+    # 2. #0204 tag inside the asset name
+    m = re.search(r'#\s*0*(\d+)', q)
+    if m:
+        tag = f"#{int(m.group(1)):04d}"
+        row = machines[machines["asset_name"].str.contains(tag, case=False, na=False)]
+        if not row.empty:
+            return row.iloc[0]
+    # 3. model / name token (e.g. "420f", "pc200", "d6t")
+    stop = {"asset", "assets", "machine", "machines", "equipment", "unit", "status",
+            "how", "hows", "the", "whats", "what", "about", "tell", "doing", "is", "of"}
+    for t in re.findall(r'[a-z0-9]{3,}', q):
+        if t in stop:
+            continue
+        row = machines[machines["model"].str.lower().str.contains(re.escape(t), na=False)
+                       | machines["asset_name"].str.lower().str.contains(re.escape(t), na=False)]
+        if not row.empty:
+            return row.iloc[0]
+    return None
+
+
+def _cp_machine(q: str):
+    row = _find_machine(q)
+    if row is None:
+        return None
+    aid = row["asset_id"]
+    pm = predict_maintenance(aid)
+    sites = _sites().set_index("site_id")
+    sid = row.get("current_site_id")
+    site_name = sites.loc[sid]["site_name"] if sid in sites.index else (sid or "-")
+    anoms = [e for e in detect_anomalies(limit=1000) if e["assetId"] == aid]
+    out = [
+        f"{row['asset_name']} ({row['equipment_type']}) - {aid}",
+        f"- Location: {site_name} ({row.get('country','-')})",
+        f"- Status: {row.get('current_status','-')}",
+        f"- Health: {pm['health']}/100  |  Maintenance risk: {pm['riskScore']}%",
+        f"- Engine hours: {int(_num(row.get('total_engine_hours',0),0)):,} "
+        f"({pm.get('lifeUsedPct','?')}% of rated life)",
+    ]
+    if pm.get("maintenanceWithin30d"):
+        out.append(f"- Service due: {pm['reason']}")
+    out.append(f"- {anoms[0]['reason']}" if anoms else "- No active anomalies on this unit.")
+    return "\n".join(out)
+
+
+def _find_site(q: str):
+    sites = _sites()
+    m = re.search(r'site0*(\d+)', q)
+    if m:
+        padded = f"SITE{int(m.group(1)):04d}"
+        row = sites[sites["site_id"] == padded]
+        if not row.empty:
+            return row.iloc[0]
+    stop = {"site", "sites", "project", "location", "what", "whats", "happening",
+            "status", "about", "tell", "show", "there", "the", "how", "hows"}
+    for t in re.findall(r'[a-z]{4,}', q):
+        if t in stop:
+            continue
+        row = sites[sites["site_name"].str.lower().str.contains(re.escape(t), na=False)
+                    | sites["city"].str.lower().str.contains(re.escape(t), na=False)]
+        if not row.empty:
+            return row.iloc[0]
+    return None
+
+
+def _cp_site(q: str):
+    row = _find_site(q)
+    if row is None:
+        return None
+    sid = row["site_id"]
+    machines = _machines()
+    here = machines[machines["current_site_id"] == sid]
+    n = len(here)
+    if n == 0:
+        return f"{row['site_name']} ({row['city']}) - no machines currently assigned."
+    rented = int((here["current_status"] == "rented").sum())
+    util = round(rented / n * 100) if n else 0
+    anoms = [e for e in detect_anomalies(limit=1000) if e["site"] == sid]
+    fh = fleet_health_overview()
+    low = [a for a in here["asset_id"] if a in fh and fh[a]["health"] < 50]
+    out = [
+        f"{row['site_name']} ({row['city']}, {row.get('country','-')}) - {sid}",
+        f"- Machines on site: {n}  |  Working: {rented} ({util}% utilization)",
+        f"- Active anomalies here: {len(anoms)}",
+    ]
+    for e in anoms[:2]:
+        out.append(f"  - {e['equipment']}: {e['anomalyLabel']}")
+    if low:
+        out.append(f"- {len(low)} machine(s) with low health (<50) needing attention")
+    return "\n".join(out)
+
+
 def _cp_help() -> str:
     return ("I'm your fleet copilot - I answer from live telemetry + the ML models. Try:\n"
-            + "\n".join(f"- {p}" for p in COPILOT_PROMPTS))
+            + "\n".join(f"- {p}" for p in COPILOT_PROMPTS)
+            + "\n- Or ask about a specific machine ('how's MAC00002?') or site ('what's at SITE0025?')")
 
 
 def copilot_answer(query: str) -> str:
@@ -1008,7 +1112,17 @@ def copilot_answer(query: str) -> str:
         return any(w in q for w in words)
 
     try:
-        # Order matters: more specific intents first.
+        # 0. Explicit machine / site identifiers win immediately.
+        if re.search(r'mac0*\d+|#\s*\d+', q):
+            ans = _cp_machine(q)
+            if ans:
+                return ans
+        if re.search(r'site0*\d+', q):
+            ans = _cp_site(q)
+            if ans:
+                return ans
+
+        # 1. General topic intents (most specific first).
         if has("anomal", "suspicious", "unauthorized", "unauthorised", "misuse",
                "theft", "stolen", "flagged", "alert", "fraud"):
             return _cp_anomalies()
@@ -1027,9 +1141,20 @@ def copilot_answer(query: str) -> str:
         if has("demand", "forecast", "in demand", "popular", "need next", "next week",
                "busy", "trend"):
             return _cp_demand()
-        if has("summar", "overview", "today", "snapshot", "status", "brief",
+        if has("summar", "overview", "today", "snapshot", "brief",
                "how are we", "how's the fleet", "hows the fleet"):
             return _cp_summary()
+
+        # 2. Name-based machine / site lookup as a last resort before help.
+        if has("asset", "machine", "equipment", "unit", "how is", "how's",
+               "tell me about", "doing"):
+            ans = _cp_machine(q)
+            if ans:
+                return ans
+        if has("site", "project", "location", " at "):
+            ans = _cp_site(q)
+            if ans:
+                return ans
         return _cp_help()
     except Exception as e:
         print("[copilot] answer failed:", e)
