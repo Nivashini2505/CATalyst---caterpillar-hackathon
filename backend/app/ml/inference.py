@@ -871,6 +871,56 @@ def kpi_band():
     }
 
 
+def reports_summary():
+    """
+    Headline figures for the Reports page cards + an export payload.
+    Everything is aggregated from the committed serving snapshots / models
+    (revenue from demand_summary, downtime & idle from telemetry, utilization
+    from engine/idle ratios) - no dummy values.
+    """
+    rev = revenue_trend()
+    dt = downtime_analysis()
+    idle = idle_analysis()
+    util = utilization_trend()
+    rentals = rental_trends()
+
+    total_rev = sum(r["revenue"] for r in rev)
+    avg_rev = round(total_rev / len(rev)) if rev else 0
+    best = max(rev, key=lambda r: r["revenue"]) if rev else {"month": "-", "revenue": 0}
+
+    sched = sum(d["scheduled"] for d in dt)
+    unpl = sum(d["unplanned"] for d in dt)
+    unpl_pct = round(unpl / (sched + unpl) * 100) if (sched + unpl) else 0
+
+    idle_hours = sum(i["hours"] for i in idle)
+    idle_cost = sum(i["cost"] for i in idle)
+    worst = idle[0]["category"] if idle else "-"
+
+    avg_util = round(sum(u["utilization"] for u in util) / len(util)) if util else 0
+    peak_util = max((u["utilization"] for u in util), default=0)
+    cur_util = util[-1]["utilization"] if util else 0
+
+    period = f"{rev[0]['month']}-{rev[-1]['month']}" if rev else "-"
+    return {
+        "period": period,
+        "cards": {
+            "revenue": {"total": total_rev, "avgMonthly": avg_rev,
+                        "bestMonth": best["month"], "bestValue": best["revenue"]},
+            "downtime": {"scheduled": sched, "unplanned": unpl, "unplannedPct": unpl_pct},
+            "idle": {"totalHours": idle_hours, "totalCost": idle_cost, "worstCategory": worst},
+            "utilization": {"avg": avg_util, "peak": peak_util, "current": cur_util},
+        },
+        # Detailed tables (used by the CSV/PDF export on the frontend).
+        "tables": {
+            "revenueTrend": rev,
+            "downtimeData": dt,
+            "idleAnalysis": idle,
+            "utilizationTrend": util,
+            "rentalTrends": rentals,
+        },
+    }
+
+
 # =====================================================================
 # 5) CONVERSATIONAL COPILOT
 # ---------------------------------------------------------------------

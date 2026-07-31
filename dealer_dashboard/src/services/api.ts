@@ -37,6 +37,11 @@ export const fetchTrends = async () => {
   return response.data;
 };
 
+export const fetchReports = async () => {
+  const response = await api.get('/analytics/reports');
+  return response.data;
+};
+
 export const fetchBrief = async () => {
   const response = await api.get('/analytics/brief');
   return response.data;
